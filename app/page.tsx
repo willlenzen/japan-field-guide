@@ -1,15 +1,12 @@
 "use client";
 import Link from "next/link";
 import { AsciiFlag } from "@/components/ascii-flag";
-import { NavBar } from "@/components/nav-bar";
-
 import { useStarred } from "@/lib/use-starred";
 
 export default function Home() {
   const { count, mounted } = useStarred();
   return (
     <>
-      <NavBar current="/" />
       {/* vertical watermark */}
       <div
         className="fixed left-4 top-4 z-0 pointer-events-none hidden md:block"
