@@ -7,7 +7,22 @@ import { useStarred } from "@/lib/use-starred";
 export default function Home() {
   const { count, mounted } = useStarred();
   return (
-    <main className="relative min-h-dvh flex flex-col">
+    <>
+      {/* vertical watermark */}
+      <div
+        className="fixed left-0 top-1/2 -translate-y-1/2 z-0 pointer-events-none hidden md:block"
+        style={{
+          writingMode: "vertical-rl",
+          fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace",
+          fontSize: "88px",
+          color: "var(--shironeri)",
+          opacity: 0.05,
+          lineHeight: 1,
+        }}
+      >
+        日本のフィールドガイド
+      </div>
+    <main className="relative z-1 min-h-dvh flex flex-col">
       {/* flag + title */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 pt-8 pb-4">
         <AsciiFlag />
@@ -25,7 +40,7 @@ export default function Home() {
       </div>
 
       {/* navigation */}
-      <nav className="px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
+      <nav className="mt-10 px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
         <Link
           href="/map"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
@@ -72,9 +87,19 @@ export default function Home() {
       {/* footer */}
       <footer className="px-4 py-4 text-center">
         <p className="font-mono text-[9px] text-[var(--keshizumi)]">
-          built by will lenzen with claude · {new Date().getFullYear()}
+          built by{" "}
+          <a
+            href="https://willl.xyz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--sunezumi)] no-underline hover:text-[var(--shironeri)] transition-colors"
+          >
+            will lenzen
+          </a>
+          {" "}with claude · {new Date().getFullYear()}
         </p>
       </footer>
     </main>
+    </>
   );
 }
