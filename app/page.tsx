@@ -56,7 +56,7 @@ export default function Home() {
       </div>
 
       {/* navigation */}
-      <nav className="px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center" style={{ marginTop: 40 }}>
+      <nav className="px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
         <Link
           href="/map"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
