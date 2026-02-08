@@ -19,7 +19,7 @@ function markerIcon(cat: Category, selected: boolean, pulse: boolean): L.DivIcon
   const size = selected ? 12 : 8;
   const css = categoryConfig[cat].css;
   const pulseHtml = pulse
-    ? `<div class="radar-pulse" style="--pulse-color:${css}"></div>`
+    ? `<div class="radar-pulse" style="--pulse-color:${css}"></div><div class="radar-pulse" style="--pulse-color:${css};animation-delay:1s"></div>`
     : "";
   return L.divIcon({
     className: "",
