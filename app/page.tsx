@@ -40,7 +40,7 @@ export default function Home() {
       </div>
     <main className="relative z-1 min-h-dvh flex flex-col">
       {/* flag + title */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-8 pb-4">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-8">
         <AsciiFlag />
         <div className="text-center mt-4 space-y-2">
           <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
@@ -56,7 +56,7 @@ export default function Home() {
       </div>
 
       {/* navigation */}
-      <nav className="mt-10 px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
+      <nav className="px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center" style={{ marginTop: 40 }}>
         <Link
           href="/map"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
