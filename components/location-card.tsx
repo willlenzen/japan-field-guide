@@ -59,19 +59,10 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
               <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
               <button
                 onClick={onClose}
-                className="flex items-center justify-center w-7 h-7 text-[var(--sunezumi)] hover:text-[var(--shironeri)] hover:bg-white/[0.08] cursor-pointer transition-colors"
+                className="flex items-center justify-center w-7 h-7 text-[18px] text-[var(--sunezumi)] hover:text-[var(--shironeri)] hover:bg-white/[0.08] cursor-pointer transition-colors leading-none"
+                style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}
               >
-                <svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="0" y="0" width="2" height="2" fill="currentColor" />
-                  <rect x="8" y="0" width="2" height="2" fill="currentColor" />
-                  <rect x="2" y="2" width="2" height="2" fill="currentColor" />
-                  <rect x="6" y="2" width="2" height="2" fill="currentColor" />
-                  <rect x="4" y="4" width="2" height="2" fill="currentColor" />
-                  <rect x="2" y="6" width="2" height="2" fill="currentColor" />
-                  <rect x="6" y="6" width="2" height="2" fill="currentColor" />
-                  <rect x="0" y="8" width="2" height="2" fill="currentColor" />
-                  <rect x="8" y="8" width="2" height="2" fill="currentColor" />
-                </svg>
+                X
               </button>
             </div>
           </div>
