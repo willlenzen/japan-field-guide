@@ -5,39 +5,30 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ═══════════════════════════════════════════
-   日本の伝統色 — NIPPON COLORS DESIGN SYSTEM
+   日本の伝統色 — NIPPON COLORS
    ═══════════════════════════════════════════ */
 
 :root {
-  /* ── Ink & Charcoal (墨 sumi family) ── */
-  --ro:             #0C0C0C;   /* 呂 RO — lacquer black */
-  --sumi:           #1C1C1C;   /* 墨 SUMI — ink black */
-  --keshizumi:      #434343;   /* 消炭 KESHIZUMI — spent charcoal */
-  --aisumicha:      #373C38;   /* 藍墨茶 AISUMICHA — indigo ink tea */
-
-  /* ── Nezumi Grays (鼠 mouse-color family) ── */
-  --sunezumi:       #787D7B;   /* 素鼠 SUNEZUMI — plain mouse */
-  --ginnezumi:      #91989F;   /* 銀鼠 GINNEZUMI — silver mouse */
-  --shironezumi:    #BDC0BA;   /* 白鼠 SHIRONEZUMI — white mouse */
-  --shironeri:      #FCFAF2;   /* 白練 SHIRONERI — unbleached silk */
-
-  /* ── Accent: 紅 KURENAI ── */
+  --ro:             #0C0C0C;
+  --sumi:           #1C1C1C;
+  --keshizumi:      #434343;
+  --aisumicha:      #373C38;
+  --sunezumi:       #787D7B;
+  --ginnezumi:      #91989F;
+  --shironezumi:    #BDC0BA;
+  --shironeri:      #FCFAF2;
   --kurenai:        #CB1B45;
   --kurenai-glow:   rgba(203, 27, 69, 0.08);
-
-  /* ── Category Colors ── */
-  --fuji:           #8B81C3;   /* 藤 FUJI — wisteria */
+  --fuji:           #8B81C3;
   --fuji-glow:      rgba(139, 129, 195, 0.08);
-  --kuchiba:        #E2943B;   /* 朽葉 KUCHIBA — fallen leaf amber */
+  --kuchiba:        #E2943B;
   --kuchiba-glow:   rgba(226, 148, 59, 0.08);
-  --wakatake:       #5DAC81;   /* 若竹 WAKATAKE — young bamboo */
+  --wakatake:       #5DAC81;
   --wakatake-glow:  rgba(93, 172, 129, 0.08);
-
-  /* ── Star / Saved ── */
-  --yamabuki:       #FFB11B;   /* 山吹 YAMABUKI — golden rose */
+  --yamabuki:       #FFB11B;
   --yamabuki-glow:  rgba(255, 177, 27, 0.12);
 
-  /* ── shadcn semantic mapping ── */
+  /* shadcn */
   --radius: 0.25rem;
   --background: #0C0C0C;
   --foreground: #FCFAF2;
@@ -113,8 +104,6 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-
-  /* ── Nippon Colors in Tailwind ── */
   --color-ro: #0C0C0C;
   --color-sumi: #1C1C1C;
   --color-keshizumi: #434343;
@@ -130,27 +119,16 @@
   --color-yamabuki: #FFB11B;
 }
 
-/* ═══════════════════════════════════════════
-   BASE LAYER
-   ═══════════════════════════════════════════ */
-
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  html {
-    background-color: #0C0C0C;
-  }
+  * { @apply border-border outline-ring/50; }
+  html { background-color: #0C0C0C; }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-geist-sans), system-ui, sans-serif;
   }
 }
 
-/* ═══════════════════════════════════════════
-   NOISE GRAIN TEXTURE — washi paper / anime cel grain
-   ═══════════════════════════════════════════ */
-
+/* noise grain */
 body::before {
   content: '';
   position: fixed;
@@ -158,104 +136,28 @@ body::before {
   z-index: 9999;
   pointer-events: none;
   opacity: 0.025;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3Oelieli+Neli9NTU1PT09NTU1LKeli+SkpKeli+PFhYWHh4eJiYmeli+NLi4ueli+PAgICBeli+PAwMDCwsLeli+PGxsbeli+NFRUVJSUleli+PDw8PPz8/R0dHOzs7S0tLQ0NDeli+Peli");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAElBMVEUAAAAAAAAAAAAAAAAAAAAAAADgKxmiAAAABnRSTlMHFBkgJyskORkgAAAASUlEQVQ4y2MQhAIGBsYFDAwMC4T+//8vJMTAwPD/P4MQEP3/z8DA8B8owsDw/z+YzcCwAKhECMYWYhBkYGJgYGBmiGBgAADjxQoRLmm5BAAAAABJRU5ErkJggg==");
   background-repeat: repeat;
 }
 
-/* ═══════════════════════════════════════════
-   LEAFLET DARK OVERRIDES
-   ═══════════════════════════════════════════ */
+/* leaflet */
+.leaflet-container { background: #0C0C0C !important; font-family: var(--font-geist-mono), monospace; }
+.leaflet-control-zoom { border: 1px solid #434343 !important; border-radius: 2px !important; overflow: hidden; }
+.leaflet-control-zoom a { background: #1C1C1C !important; color: #91989F !important; border-color: #434343 !important; width: 30px !important; height: 30px !important; line-height: 30px !important; font-size: 14px !important; }
+.leaflet-control-zoom a:hover { background: #373C38 !important; color: #FCFAF2 !important; }
+.leaflet-control-attribution { background: rgba(12,12,12,0.85) !important; color: #787D7B !important; font-size: 9px !important; font-family: var(--font-geist-mono), monospace !important; }
+.leaflet-control-attribution a { color: #787D7B !important; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip-container { display: none !important; }
+.leaflet-tooltip.pixel-tooltip { background: #1C1C1C !important; color: #FCFAF2 !important; border: 1px solid #434343 !important; border-radius: 2px !important; box-shadow: none !important; font-family: var(--font-geist-mono), monospace !important; font-size: 11px !important; padding: 3px 7px !important; white-space: nowrap; }
+.leaflet-tooltip.pixel-tooltip::before { border-top-color: #434343 !important; }
 
-.leaflet-container {
-  background: #0C0C0C !important;
-  font-family: var(--font-geist-mono), monospace;
-}
-
-.leaflet-control-zoom {
-  border: 1px solid #434343 !important;
-  border-radius: 2px !important;
-  overflow: hidden;
-}
-
-.leaflet-control-zoom a {
-  background: #1C1C1C !important;
-  color: #91989F !important;
-  border-color: #434343 !important;
-  width: 30px !important;
-  height: 30px !important;
-  line-height: 30px !important;
-  font-size: 14px !important;
-}
-
-.leaflet-control-zoom a:hover {
-  background: #373C38 !important;
-  color: #FCFAF2 !important;
-}
-
-.leaflet-control-attribution {
-  background: rgba(12, 12, 12, 0.85) !important;
-  color: #787D7B !important;
-  font-size: 9px !important;
-  font-family: var(--font-geist-mono), monospace !important;
-}
-
-.leaflet-control-attribution a {
-  color: #787D7B !important;
-}
-
-.leaflet-popup-content-wrapper,
-.leaflet-popup-tip-container {
-  display: none !important;
-}
-
-.leaflet-tooltip.pixel-tooltip {
-  background: #1C1C1C !important;
-  color: #FCFAF2 !important;
-  border: 1px solid #434343 !important;
-  border-radius: 2px !important;
-  box-shadow: none !important;
-  font-family: var(--font-geist-mono), monospace !important;
-  font-size: 11px !important;
-  padding: 3px 7px !important;
-  white-space: nowrap;
-}
-
-.leaflet-tooltip.pixel-tooltip::before {
-  border-top-color: #434343 !important;
-}
-
-/* ═══════════════════════════════════════════
-   SCROLLBAR
-   ═══════════════════════════════════════════ */
-
+/* scrollbar */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #434343; border-radius: 2px; }
-
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 
-/* ═══════════════════════════════════════════
-   CHECKBOX OVERRIDES
-   ═══════════════════════════════════════════ */
-
-button[role="checkbox"][data-state="checked"] {
-  background-color: #CB1B45 !important;
-  border-color: #CB1B45 !important;
-}
-button[role="checkbox"][data-state="unchecked"] {
-  border-color: #434343 !important;
-  background-color: transparent !important;
-}
-
-/* ═══════════════════════════════════════════
-   SPLASH PULSE
-   ═══════════════════════════════════════════ */
-
-@keyframes pulse-text {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
-}
+/* checkbox */
+button[role="checkbox"][data-state="checked"] { background-color: #CB1B45 !important; border-color: #CB1B45 !important; }
+button[role="checkbox"][data-state="unchecked"] { border-color: #434343 !important; background-color: transparent !important; }

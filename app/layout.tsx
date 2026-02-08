@@ -4,10 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Japan Field Guide — 東京 '26",
-  description:
-    "Personal Tokyo trip guide · February 12–20, 2026 · Built with Claude",
-  icons: { icon: "/favicon.ico" },
+  title: "Japan Field Guide \u2014 東京 '26",
+  description: "Personal Tokyo trip guide \u00b7 February 12\u201320, 2026",
 };
 
 export const viewport: Viewport = {
