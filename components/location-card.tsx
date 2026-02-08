@@ -35,7 +35,7 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
         ref={panelRef}
         className="absolute bottom-0 left-0 right-0 border-t border-[var(--keshizumi)] bg-[var(--sumi)]"
       >
-        <div className="max-w-[800px] mx-auto px-4 py-6 pb-[calc(max(1.5rem,env(safe-area-inset-bottom))+80px)]">
+        <div className="max-w-[800px] mx-auto px-4 py-6 pb-[calc(max(56px,env(safe-area-inset-bottom)))]">
           {/* header */}
           <div className="flex items-start justify-between gap-2 mb-2">
             <div className="flex-1 min-w-0">
