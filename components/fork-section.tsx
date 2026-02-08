@@ -1,36 +1,39 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 const FORK_PROMPT = `Build me a personal travel field guide for [YOUR CITY]. Use a dark pixel aesthetic with a monospaced type system. Include locations organized by category (base, culture, food, shopping) with lat/lng coordinates, descriptions, budget ranges, and local tips. Make it a Next.js app with Leaflet maps, localStorage for saving favorites, and a shareable URL scheme. Design it to feel like a dev tool, not a tourist app.`;
 
-export function ForkSection() {
-  const [copied, setCopied] = useState(false);
+export function ForkButton() {
+  const [toast, setToast] = useState(false);
 
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(FORK_PROMPT);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setToast(true);
   }, []);
 
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(false), 2500);
+    return () => clearTimeout(t);
+  }, [toast]);
+
   return (
-    <section className="border-t border-[var(--keshizumi)] px-4 py-6">
-      <h2 className="font-mono text-[10px] uppercase tracking-wider text-[var(--sunezumi)] mb-3">
-        Fork this guide
-      </h2>
-      <p className="text-xs text-[var(--ginnezumi)] leading-relaxed mb-4">
-        Copy the prompt below and paste it into Claude to build your own city guide.
-      </p>
-      <div className="border border-[var(--keshizumi)] bg-[var(--sumi)] p-3 mb-3">
-        <pre className="text-[10px] font-mono text-[var(--sunezumi)] whitespace-pre-wrap leading-relaxed">
-          {FORK_PROMPT}
-        </pre>
-      </div>
+    <>
       <button
         onClick={handleCopy}
-        className="font-mono text-[10px] border border-[var(--keshizumi)] px-3 py-1.5 text-[var(--ginnezumi)] hover:text-[var(--shironeri)] hover:border-[var(--sunezumi)] transition-colors cursor-pointer"
+        className="absolute top-[14px] right-[14px] z-10 flex items-center gap-1.5 font-mono text-[11px] text-[var(--sunezumi)] hover:text-[var(--shironeri)] transition-colors cursor-pointer bg-transparent border-none p-0"
       >
-        {copied ? "copied ✓" : "copy prompt"}
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+        Fork
       </button>
-    </section>
+
+      {toast && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 font-mono text-[11px] text-[var(--shironeri)] bg-[var(--sumi)] border border-[var(--keshizumi)] px-4 py-2">
+          Prompt copied — paste into Claude
+        </div>
+      )}
+    </>
   );
 }

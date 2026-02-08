@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
 import { AsciiFlag } from "@/components/ascii-flag";
-import { ForkSection } from "@/components/fork-section";
+import { ForkButton } from "@/components/fork-section";
 import { useStarred } from "@/lib/use-starred";
 
 export default function Home() {
   const { count, mounted } = useStarred();
   return (
-    <main className="min-h-dvh flex flex-col">
+    <main className="relative min-h-dvh flex flex-col">
       {/* flag + title */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 pt-8 pb-4">
         <AsciiFlag />
@@ -54,8 +54,7 @@ export default function Home() {
         </Link>
       </nav>
 
-      {/* fork */}
-      <ForkSection />
+      <ForkButton />
 
       {/* footer */}
       <footer className="border-t border-[var(--keshizumi)] px-4 py-4 text-center">
