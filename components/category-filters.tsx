@@ -40,18 +40,19 @@ export function CategoryFilters({ active, onChange }: CategoryFiltersProps) {
             onMouseEnter={() => setHovered(key)}
             onMouseLeave={() => setHovered(null)}
             className={cn(
-              "shrink-0 font-mono text-[14px] px-2.5 py-1 border transition-colors cursor-pointer",
+              "shrink-0 text-[14px] px-2.5 py-1 border transition-colors cursor-pointer",
               isActive
                 ? "border-current text-[var(--shironeri)]"
                 : "border-[var(--keshizumi)] text-[var(--sunezumi)] hover:text-white"
             )}
-            style={
-              isActive
+            style={{
+              fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace",
+              ...(isActive
                 ? { color: catColor, borderColor: catColor }
                 : hoverBorder
                   ? { borderColor: hoverBorder }
-                  : undefined
-            }
+                  : {}),
+            }}
           >
             {label}
           </button>

@@ -33,7 +33,7 @@ export const locations: Location[] = [
     cat: "base",
     lat: 35.6565,
     lng: 139.6935,
-    icon: "\u{1F3E0}",
+    icon: "家",
     desc: "Home base. Quiet residential pocket behind Shibuya\u2019s commercial chaos.",
   },
   {
@@ -43,7 +43,7 @@ export const locations: Location[] = [
     cat: "base",
     lat: 35.6667,
     lng: 139.7065,
-    icon: "\u{1F3A4}",
+    icon: "宿",
     desc: "Conference venue. Cat Street, Shibuya. ~18 min walk from Airbnb.",
   },
 

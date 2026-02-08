@@ -42,14 +42,14 @@ export default function Home() {
       {/* flag + title */}
       <div className="flex flex-col items-center px-4 pt-4">
         <AsciiFlag />
-        <div className="text-center mt-2 space-y-2">
+        <div className="text-center space-y-2" style={{ marginTop: 40 }}>
           <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
             日本のフィールドガイド
           </h1>
           <p className="text-sm tracking-tight text-white/80" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
             Japan Field Guide
           </p>
-          <p className="font-mono text-[12px] text-[var(--sunezumi)] tracking-wider uppercase">
+          <p className="font-mono text-[12px] text-[var(--sunezumi)] tracking-wider uppercase" style={{ paddingBottom: 40 }}>
             Tokyo · Feb 12–20, 2026
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function Home() {
           href="/map"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
-          <span className="font-mono text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
+          <span className="text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
             Map
           </span>
           <span className="font-mono text-[12px] text-[var(--keshizumi)]">→</span>
@@ -70,7 +70,7 @@ export default function Home() {
           href="/planning"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
-          <span className="font-mono text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
+          <span className="text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
             Planning
           </span>
           <span className="font-mono text-[12px] text-[var(--keshizumi)]">→</span>
@@ -79,7 +79,7 @@ export default function Home() {
           href="/saved"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
-          <span className="font-mono text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
+          <span className="text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
             Saved
           </span>
           <span className="font-mono text-[12px] text-[var(--keshizumi)]">
