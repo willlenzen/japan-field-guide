@@ -40,7 +40,7 @@ export function LocationList({ filter, selectedId, onHover, onSelect, isStarred,
         });
         return (
           <div key={cat}>
-            <div className="sticky top-0 z-10 bg-[var(--ro)] border-b border-[var(--keshizumi)]/50 px-4 py-1.5">
+            <div className="sticky top-0 z-10 bg-[var(--ro)] border-b border-[var(--keshizumi)]/50 px-4" style={{ paddingTop: 20, paddingBottom: 12 }}>
               <span className="font-mono text-[12px] uppercase tracking-wider" style={{ color: cfg.color }}>
                 {cfg.label}
               </span>

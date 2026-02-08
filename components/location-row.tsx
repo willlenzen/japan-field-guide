@@ -22,10 +22,10 @@ export function LocationRow({ location, starred, onToggleStar, checked, onToggle
       onClick={onSelect}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`w-full text-left flex items-center gap-3 px-4 py-2.5 border-b border-[var(--keshizumi)]/50 transition-all cursor-pointer ${
+      className={`w-full text-left flex items-center gap-3 px-4 border-b border-[var(--keshizumi)]/50 transition-all duration-300 ease-in-out cursor-pointer ${
         selected ? "bg-[var(--sumi)]" : "hover:bg-[var(--sumi)]/60"
       }`}
-      style={{ opacity: checked ? 0.2 : 1 }}
+      style={{ opacity: checked ? 0.2 : 1, paddingTop: 12, paddingBottom: 12 }}
     >
       <div
         className="w-0.5 shrink-0 self-stretch"

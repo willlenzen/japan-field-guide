@@ -168,14 +168,11 @@ body::before {
   animation: radar-ping 2400ms ease-out infinite;
 }
 @keyframes radar-ping {
-  0%   { width: 0;    height: 0;    border-radius: 50%; opacity: 0.6; border-width: 2px; }
-  70%  { width: 60px; height: 60px; border-radius: 50%; opacity: 0.3; border-width: 2px; }
-  75%  { width: 64px; height: 64px; border-radius: 35%; opacity: 0.25; border-width: 2px; }
-  80%  { width: 68px; height: 68px; border-radius: 20%; opacity: 0.2;  border-width: 3px; }
-  85%  { width: 72px; height: 72px; border-radius: 10%; opacity: 0.15; border-width: 3px; }
-  90%  { width: 76px; height: 76px; border-radius: 4%;  opacity: 0.1;  border-width: 3px; }
-  95%  { width: 78px; height: 78px; border-radius: 0%;  opacity: 0.05; border-width: 4px; }
-  100% { width: 80px; height: 80px; border-radius: 0%;  opacity: 0;    border-width: 4px; }
+  0%   { width: 0;    height: 0;    opacity: 0.6; border-style: solid;  border-width: 2px; }
+  70%  { width: 60px; height: 60px; opacity: 0.3; border-style: solid;  border-width: 2px; }
+  80%  { width: 68px; height: 68px; opacity: 0.2; border-style: dashed; border-width: 2px; }
+  90%  { width: 76px; height: 76px; opacity: 0.1; border-style: dotted; border-width: 3px; }
+  100% { width: 80px; height: 80px; opacity: 0;   border-style: dotted; border-width: 3px; }
 }
 
 /* scrollbar */

@@ -8,17 +8,17 @@ interface PixelCheckProps {
   className?: string;
 }
 
-// Pixelated checkmark on a 16×16 grid
+// Pixelated checkmark on a 14×12 grid, centered in 16×16 viewBox
 const CHECK_PIXELS = [
-  [12, 1], [13, 1],
-  [11, 2], [12, 2],
-  [10, 3], [11, 3],
-  [9, 4], [10, 4],
-  [8, 5], [9, 5],
-  [1, 6], [2, 6], [7, 6], [8, 6],
-  [2, 7], [3, 7], [6, 7], [7, 7],
-  [3, 8], [4, 8], [5, 8], [6, 8],
-  [4, 9], [5, 9],
+  [13, 2], [14, 2],
+  [12, 3], [13, 3],
+  [11, 4], [12, 4],
+  [10, 5], [11, 5],
+  [9, 6], [10, 6],
+  [2, 7], [3, 7], [8, 7], [9, 7],
+  [3, 8], [4, 8], [7, 8], [8, 8],
+  [4, 9], [5, 9], [6, 9], [7, 9],
+  [5, 10], [6, 10],
 ];
 
 export function PixelCheck({ filled, onClick, size = 14, className }: PixelCheckProps) {
