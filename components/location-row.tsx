@@ -51,15 +51,15 @@ export function LocationRow({ location, starred, onToggleStar, checked, onToggle
         </div>
         <p className="text-[12px] text-[var(--sunezumi)] mt-0.5 truncate">{location.sub}</p>
       </div>
-      <div className="flex items-center gap-3 shrink-0">
-        <PixelCheck
-          filled={checked}
-          onClick={onToggleCheck}
-          size={14}
-        />
+      <div className="flex items-center gap-6 shrink-0">
         <PixelStar
           filled={starred}
           onClick={onToggleStar}
+          size={14}
+        />
+        <PixelCheck
+          filled={checked}
+          onClick={onToggleCheck}
           size={14}
         />
       </div>
