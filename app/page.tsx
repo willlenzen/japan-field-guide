@@ -13,6 +13,7 @@ export default function Home() {
         className="fixed left-4 top-4 z-0 pointer-events-none hidden md:block"
         style={{
           writingMode: "vertical-rl",
+          textOrientation: "upright",
           fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace",
           fontSize: "56px",
           color: "var(--shironeri)",
@@ -27,6 +28,7 @@ export default function Home() {
         className="fixed right-4 bottom-4 z-0 pointer-events-none hidden md:block"
         style={{
           writingMode: "vertical-rl",
+          textOrientation: "upright",
           fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace",
           fontSize: "56px",
           color: "var(--shironeri)",
