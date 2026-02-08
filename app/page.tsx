@@ -40,9 +40,9 @@ export default function Home() {
       </div>
     <main className="relative z-1 min-h-dvh flex flex-col">
       {/* flag + title */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-4">
         <AsciiFlag />
-        <div className="text-center mt-4 space-y-2">
+        <div className="text-center mt-2 space-y-2">
           <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
             日本のフィールドガイド
           </h1>

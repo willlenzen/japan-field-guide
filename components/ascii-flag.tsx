@@ -196,7 +196,7 @@ export function AsciiFlag() {
   return (
     <div
       ref={containerRef}
-      className="py-4"
+      className="py-2"
       aria-label="Interactive ASCII art Japanese flag"
     />
   );
