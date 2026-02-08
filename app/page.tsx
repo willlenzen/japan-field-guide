@@ -36,7 +36,7 @@ export default function Home() {
           lineHeight: 1,
         }}
       >
-        東京 2026年2月
+        東京2026年2月
       </div>
     <main className="relative z-1 min-h-dvh flex flex-col">
       {/* flag + title */}
