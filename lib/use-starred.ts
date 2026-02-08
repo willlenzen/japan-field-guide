@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 
 const KEY = "fieldguide-starred";
+const SYNC_EVENT = "fieldguide-starred-sync";
 
 function readInitial(): Set<string> {
   if (typeof window === "undefined") return new Set();
@@ -22,6 +23,13 @@ export function useStarred() {
     setStarred(init);
     setMounted(true);
     if (init.size > 0) localStorage.setItem(KEY, JSON.stringify([...init]));
+
+    const onSync = () => {
+      const stored = localStorage.getItem(KEY);
+      if (stored) setStarred(new Set<string>(JSON.parse(stored)));
+    };
+    window.addEventListener(SYNC_EVENT, onSync);
+    return () => window.removeEventListener(SYNC_EVENT, onSync);
   }, []);
 
   const toggle = useCallback((id: string) => {
@@ -29,6 +37,7 @@ export function useStarred() {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id); else next.add(id);
       localStorage.setItem(KEY, JSON.stringify([...next]));
+      window.dispatchEvent(new Event(SYNC_EVENT));
       return next;
     });
   }, []);
