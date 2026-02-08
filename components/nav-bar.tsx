@@ -29,7 +29,7 @@ export function NavBar({ current }: NavBarProps) {
             <Link
               key={link.href}
               href={link.href}
-              className="text-[var(--ginnezumi)] hover:text-[var(--shironeri)] transition-colors"
+              className="text-[var(--ginnezumi)] hover:text-white transition-colors"
               style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}
             >
               {link.label === "Saved"
