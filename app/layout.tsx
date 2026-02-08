@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://japan-field-guide.vercel.app"),
   title: "Japan Field Guide \u2014 東京 '26",
   description: "Personal Tokyo trip guide \u00b7 February 12\u201320, 2026",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [{ rel: "icon", url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {
