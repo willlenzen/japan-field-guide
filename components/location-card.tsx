@@ -54,15 +54,24 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
               </div>
               <p className="text-[12px] text-[var(--sunezumi)] mt-0.5 ml-1.5">{location.sub}</p>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
               <PixelStar filled={starred} onClick={onToggleStar} size={16} />
               <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
               <button
                 onClick={onClose}
-                className="flex items-center justify-center w-7 h-7 text-[14px] text-[var(--sunezumi)] hover:text-[var(--shironeri)] hover:bg-white/[0.08] cursor-pointer transition-colors"
-                style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}
+                className="flex items-center justify-center w-7 h-7 text-[var(--sunezumi)] hover:text-[var(--shironeri)] hover:bg-white/[0.08] cursor-pointer transition-colors"
               >
-                ✕
+                <svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0" y="0" width="2" height="2" fill="currentColor" />
+                  <rect x="8" y="0" width="2" height="2" fill="currentColor" />
+                  <rect x="2" y="2" width="2" height="2" fill="currentColor" />
+                  <rect x="6" y="2" width="2" height="2" fill="currentColor" />
+                  <rect x="4" y="4" width="2" height="2" fill="currentColor" />
+                  <rect x="2" y="6" width="2" height="2" fill="currentColor" />
+                  <rect x="6" y="6" width="2" height="2" fill="currentColor" />
+                  <rect x="0" y="8" width="2" height="2" fill="currentColor" />
+                  <rect x="8" y="8" width="2" height="2" fill="currentColor" />
+                </svg>
               </button>
             </div>
           </div>

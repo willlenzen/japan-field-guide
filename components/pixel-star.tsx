@@ -35,11 +35,10 @@ const STAR_PIXELS = [
 ];
 
 export function PixelStar({ filled, onClick, size = 16, className }: PixelStarProps) {
-  const color = filled ? "var(--yamabuki)" : "var(--keshizumi)";
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={cn("shrink-0 cursor-pointer flex items-center justify-center w-7 h-7 hover:bg-white/[0.08] transition-colors", className)}
+      className={cn("group shrink-0 cursor-pointer flex items-center justify-center w-7 h-7 hover:bg-white/[0.08] transition-colors", className)}
       aria-label={filled ? "Remove from saved" : "Add to saved"}
     >
       <svg
@@ -50,7 +49,15 @@ export function PixelStar({ filled, onClick, size = 16, className }: PixelStarPr
         xmlns="http://www.w3.org/2000/svg"
       >
         {STAR_PIXELS.map(([x, y]) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill={color} />
+          <rect
+            key={`${x}-${y}`}
+            x={x}
+            y={y}
+            width={1}
+            height={1}
+            className={filled ? "" : "fill-[var(--keshizumi)] group-hover:fill-[var(--yamabuki)] transition-colors"}
+            fill={filled ? "var(--yamabuki)" : undefined}
+          />
         ))}
       </svg>
     </button>

@@ -17,11 +17,7 @@ export function OpenInMaps({ lat, lng, name }: OpenInMapsProps) {
       style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}
     >
       Map
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 3h7v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-        <path d="M13 3L5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-        <path d="M3 5v8h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-      </svg>
+      <span className="text-[14px] leading-none">↗</span>
     </a>
   );
 }
