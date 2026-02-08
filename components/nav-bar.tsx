@@ -17,7 +17,7 @@ export function NavBar({ current }: NavBarProps) {
           <circle cx="18" cy="12" r="7.2" fill="#CB1B45" />
         </svg>
       </Link>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-6 md:gap-10">
         <Link
           href="/map"
           className={`${current === "/map" ? "text-white" : "text-[var(--ginnezumi)]"} hover:text-white transition-colors`}
