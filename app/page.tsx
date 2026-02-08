@@ -10,11 +10,11 @@ export default function Home() {
     <>
       {/* vertical watermark */}
       <div
-        className="fixed left-0 top-1/2 -translate-y-1/2 z-0 pointer-events-none hidden md:block"
+        className="fixed left-4 top-4 z-0 pointer-events-none hidden md:block"
         style={{
           writingMode: "vertical-rl",
           fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace",
-          fontSize: "88px",
+          fontSize: "56px",
           color: "var(--shironeri)",
           opacity: 0.05,
           lineHeight: 1,
