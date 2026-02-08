@@ -22,6 +22,20 @@ export default function Home() {
       >
         日本のフィールドガイド
       </div>
+      {/* vertical watermark — right */}
+      <div
+        className="fixed right-4 bottom-4 z-0 pointer-events-none hidden md:block"
+        style={{
+          writingMode: "vertical-rl",
+          fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace",
+          fontSize: "56px",
+          color: "var(--shironeri)",
+          opacity: 0.05,
+          lineHeight: 1,
+        }}
+      >
+        東京 2026年2月
+      </div>
     <main className="relative z-1 min-h-dvh flex flex-col">
       {/* flag + title */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 pt-8 pb-4">
