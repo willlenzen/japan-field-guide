@@ -40,7 +40,7 @@ export default function Home() {
       </div>
     <main className="relative z-1 min-h-dvh flex flex-col">
       {/* flag + title */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-4">
+      <div className="flex flex-col items-center px-4 pt-4">
         <AsciiFlag />
         <div className="text-center mt-2 space-y-2">
           <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
@@ -56,7 +56,7 @@ export default function Home() {
       </div>
 
       {/* navigation */}
-      <nav className="px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
+      <nav className="mt-16 md:mt-6 px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
         <Link
           href="/map"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
@@ -101,7 +101,7 @@ export default function Home() {
       </a>
 
       {/* footer */}
-      <footer className="px-4 py-4 text-center">
+      <footer className="mt-auto px-4 py-4 text-center">
         <p className="font-mono text-[9px] text-[var(--keshizumi)]">
           built by{" "}
           <a
