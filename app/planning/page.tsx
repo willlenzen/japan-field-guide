@@ -137,7 +137,7 @@ export default function PlanningPage() {
             onOpenChange={() => toggleSection(section.title)}
           >
             <CollapsibleTrigger className="w-full flex items-center justify-between px-4 py-3 border-b border-[var(--keshizumi)]/50 hover:bg-[var(--sumi)]/40 transition-colors cursor-pointer">
-              <span className="font-mono text-[14px] text-[var(--ginnezumi)]">{section.title}</span>
+              <span className="font-mono text-[14px] text-white">{section.title}</span>
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[12px] text-[var(--keshizumi)]">
                   {section.items.filter((i) => isChecked(i.id)).length}/{section.items.length}
@@ -148,7 +148,7 @@ export default function PlanningPage() {
               </div>
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <div className="border-b border-[var(--keshizumi)]/50">
+              <div className="border-b border-[var(--keshizumi)]/50 py-2">
                 {section.items.map((item) => (
                   <label
                     key={item.id}
