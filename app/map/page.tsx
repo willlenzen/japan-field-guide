@@ -28,20 +28,22 @@ export default function MapPage() {
 
   return (
     <div className="min-h-dvh flex flex-col bg-[var(--ro)]">
-      <NavBar />
+      <NavBar current="/map" />
       <MapContainer
         filter={filter}
         selectedId={selected?.id ?? null}
         onSelect={handleSelect}
       />
-      <CategoryFilters active={filter} onChange={setFilter} />
-      <LocationList
-        filter={filter}
-        selectedId={selected?.id ?? null}
-        onSelect={handleSelect}
-        isStarred={isStarred}
-        onToggleStar={toggle}
-      />
+      <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1">
+        <CategoryFilters active={filter} onChange={setFilter} />
+        <LocationList
+          filter={filter}
+          selectedId={selected?.id ?? null}
+          onSelect={handleSelect}
+          isStarred={isStarred}
+          onToggleStar={toggle}
+        />
+      </div>
       {selected && (
         <LocationCard
           location={selected}

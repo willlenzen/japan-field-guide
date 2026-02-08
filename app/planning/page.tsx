@@ -114,7 +114,8 @@ export default function PlanningPage() {
 
   return (
     <div className="min-h-dvh flex flex-col bg-[var(--ro)]">
-      <NavBar />
+      <NavBar current="/planning" />
+      <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1">
       <div className="px-4 py-4 border-b border-[var(--keshizumi)]">
         <h1 className="font-mono text-sm text-[var(--shironeri)]">Planning</h1>
         <p className="font-mono text-[10px] text-[var(--sunezumi)] mt-1">
@@ -172,6 +173,7 @@ export default function PlanningPage() {
             </CollapsibleContent>
           </Collapsible>
         ))}
+      </div>
       </div>
     </div>
   );

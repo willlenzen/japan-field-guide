@@ -33,7 +33,8 @@ export default function SavedPage() {
 
   return (
     <div className="min-h-dvh flex flex-col bg-[var(--ro)]">
-      <NavBar />
+      <NavBar current="/saved" />
+      <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1">
       <div className="px-4 py-4 border-b border-[var(--keshizumi)] flex items-center justify-between">
         <div>
           <h1 className="font-mono text-sm text-[var(--shironeri)]">Saved</h1>
@@ -95,6 +96,7 @@ export default function SavedPage() {
             );
           })
         )}
+      </div>
       </div>
 
       {selected && (
