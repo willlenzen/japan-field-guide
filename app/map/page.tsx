@@ -20,6 +20,7 @@ const MapContainer = dynamic(() => import("@/components/map-container"), {
 export default function MapPage() {
   const [filter, setFilter] = useState<Category | "all">("all");
   const [selected, setSelected] = useState<Location | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const { toggle, isStarred } = useStarred();
 
   const handleSelect = useCallback((loc: Location) => {
@@ -32,6 +33,7 @@ export default function MapPage() {
       <MapContainer
         filter={filter}
         selectedId={selected?.id ?? null}
+        hoveredId={hoveredId}
         onSelect={handleSelect}
       />
       <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1">
@@ -39,6 +41,7 @@ export default function MapPage() {
         <LocationList
           filter={filter}
           selectedId={selected?.id ?? null}
+          onHover={setHoveredId}
           onSelect={handleSelect}
           isStarred={isStarred}
           onToggleStar={toggle}

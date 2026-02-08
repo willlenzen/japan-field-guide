@@ -8,13 +8,17 @@ interface LocationRowProps {
   onToggleStar: () => void;
   onSelect: () => void;
   selected?: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-export function LocationRow({ location, starred, onToggleStar, onSelect, selected }: LocationRowProps) {
+export function LocationRow({ location, starred, onToggleStar, onSelect, selected, onMouseEnter, onMouseLeave }: LocationRowProps) {
   const cat = categoryConfig[location.cat];
   return (
     <button
       onClick={onSelect}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className={`w-full text-left flex items-start gap-3 px-4 py-2.5 border-b border-[var(--keshizumi)]/50 transition-colors cursor-pointer ${
         selected ? "bg-[var(--sumi)]" : "hover:bg-[var(--sumi)]/60"
       }`}

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { locations, categoryConfig, type Location, type Category } from "@/data/locations";
@@ -7,6 +7,7 @@ import { locations, categoryConfig, type Location, type Category } from "@/data/
 interface MapContainerProps {
   filter: Category | "all";
   selectedId: string | null;
+  hoveredId: string | null;
   onSelect: (loc: Location) => void;
 }
 
@@ -14,21 +15,28 @@ const TILE_URL = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
 const TILE_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>';
 const CENTER: L.LatLngExpression = [35.6762, 139.6503];
 
-function markerIcon(cat: Category, selected: boolean): L.DivIcon {
+function markerIcon(cat: Category, selected: boolean, pulse: boolean): L.DivIcon {
   const size = selected ? 12 : 8;
   const css = categoryConfig[cat].css;
+  const pulseHtml = pulse
+    ? `<div class="radar-pulse" style="--pulse-color:${css}"></div>`
+    : "";
   return L.divIcon({
     className: "",
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
-    html: `<div style="width:${size}px;height:${size}px;background:${css};border:1px solid ${css};${selected ? `box-shadow:0 0 6px ${css}` : ""}"></div>`,
+    html: `<div style="position:relative;width:${size}px;height:${size}px;">
+      <div style="width:${size}px;height:${size}px;background:${css};border:1px solid ${css};position:relative;z-index:2;${selected ? `box-shadow:0 0 6px ${css}` : ""}"></div>
+      ${pulseHtml}
+    </div>`,
   });
 }
 
-export default function MapContainer({ filter, selectedId, onSelect }: MapContainerProps) {
+export default function MapContainer({ filter, selectedId, hoveredId, onSelect }: MapContainerProps) {
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
   const containerRef = useRef<HTMLDivElement>(null);
+  const prevHoveredRef = useRef<string | null>(null);
 
   // Initialize map
   useEffect(() => {
@@ -67,10 +75,12 @@ export default function MapContainer({ filter, selectedId, onSelect }: MapContai
     // Add or update markers
     filtered.forEach((loc) => {
       const existing = markersRef.current.get(loc.id);
-      const icon = markerIcon(loc.cat, loc.id === selectedId);
+      const isSelected = loc.id === selectedId;
+      const icon = markerIcon(loc.cat, isSelected, isSelected);
 
       if (existing) {
         existing.setIcon(icon);
+        existing.setZIndexOffset(isSelected ? 1000 : 0);
       } else {
         const marker = L.marker([loc.lat, loc.lng], { icon })
           .addTo(map)
@@ -80,10 +90,46 @@ export default function MapContainer({ filter, selectedId, onSelect }: MapContai
             offset: [0, -6],
           });
         marker.on("click", () => onSelect(loc));
+        if (isSelected) marker.setZIndexOffset(1000);
         markersRef.current.set(loc.id, marker);
       }
     });
   }, [filter, selectedId, onSelect]);
+
+  // Hover pulse — targeted O(1) update
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const prevId = prevHoveredRef.current;
+    const currId = hoveredId;
+    prevHoveredRef.current = currId;
+
+    // Clean up previous hover
+    if (prevId && prevId !== currId) {
+      const prevMarker = markersRef.current.get(prevId);
+      if (prevMarker) {
+        const prevLoc = locations.find((l) => l.id === prevId);
+        if (prevLoc) {
+          const isSelected = prevId === selectedId;
+          prevMarker.setIcon(markerIcon(prevLoc.cat, isSelected, isSelected));
+          if (!isSelected) prevMarker.setZIndexOffset(0);
+        }
+      }
+    }
+
+    // Apply pulse to current hover
+    if (currId) {
+      const currMarker = markersRef.current.get(currId);
+      if (currMarker) {
+        const currLoc = locations.find((l) => l.id === currId);
+        if (currLoc) {
+          currMarker.setIcon(markerIcon(currLoc.cat, currId === selectedId, true));
+          currMarker.setZIndexOffset(1000);
+        }
+      }
+    }
+  }, [hoveredId, selectedId]);
 
   // Pan to selected
   useEffect(() => {

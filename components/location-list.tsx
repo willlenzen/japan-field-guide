@@ -5,12 +5,13 @@ import { LocationRow } from "./location-row";
 interface LocationListProps {
   filter: Category | "all";
   selectedId: string | null;
+  onHover: (id: string | null) => void;
   onSelect: (loc: Location) => void;
   isStarred: (id: string) => boolean;
   onToggleStar: (id: string) => void;
 }
 
-export function LocationList({ filter, selectedId, onSelect, isStarred, onToggleStar }: LocationListProps) {
+export function LocationList({ filter, selectedId, onHover, onSelect, isStarred, onToggleStar }: LocationListProps) {
   const filtered = filter === "all" ? locations : locations.filter((l) => l.cat === filter);
 
   // group by category
@@ -45,6 +46,8 @@ export function LocationList({ filter, selectedId, onSelect, isStarred, onToggle
                 onToggleStar={() => onToggleStar(loc.id)}
                 onSelect={() => onSelect(loc)}
                 selected={selectedId === loc.id}
+                onMouseEnter={() => onHover(loc.id)}
+                onMouseLeave={() => onHover(null)}
               />
             ))}
           </div>
