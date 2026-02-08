@@ -141,7 +141,7 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
   return (
     <div
       ref={containerRef}
-      className="sticky top-[48px] z-30 w-full h-[50vh] sm:h-[520px] border-b border-[var(--keshizumi)]"
+      className="sticky top-[48px] z-30 w-full h-[35vh] sm:h-[364px] border-b border-[var(--keshizumi)]"
     />
   );
 }
