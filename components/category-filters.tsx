@@ -43,7 +43,7 @@ export function CategoryFilters({ active, onChange }: CategoryFiltersProps) {
               "shrink-0 font-mono text-[14px] px-2.5 py-1 border transition-colors cursor-pointer",
               isActive
                 ? "border-current text-[var(--shironeri)]"
-                : "border-[var(--keshizumi)] text-[var(--sunezumi)] hover:text-[var(--ginnezumi)]"
+                : "border-[var(--keshizumi)] text-[var(--sunezumi)] hover:text-white"
             )}
             style={
               isActive
