@@ -13,8 +13,11 @@ export default function Home() {
         <AsciiFlag />
         <div className="text-center mt-4 space-y-2">
           <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
-            Japan Field Guide
+            日本のフィールドガイド
           </h1>
+          <p className="text-sm tracking-tight text-white/80" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
+            Japan Field Guide
+          </p>
           <p className="font-mono text-[10px] text-[var(--sunezumi)] tracking-wider uppercase">
             Tokyo · Feb 12–20, 2026
           </p>
@@ -22,10 +25,10 @@ export default function Home() {
       </div>
 
       {/* navigation */}
-      <nav className="px-4 pb-6 space-y-2 max-w-sm mx-auto w-full">
+      <nav className="px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
         <Link
           href="/map"
-          className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group"
+          className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
           <span className="font-mono text-xs text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
             Map
@@ -34,7 +37,7 @@ export default function Home() {
         </Link>
         <Link
           href="/planning"
-          className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group"
+          className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
           <span className="font-mono text-xs text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
             Planning
@@ -43,7 +46,7 @@ export default function Home() {
         </Link>
         <Link
           href="/saved"
-          className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group"
+          className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
           <span className="font-mono text-xs text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
             Saved
@@ -67,9 +70,9 @@ export default function Home() {
       </a>
 
       {/* footer */}
-      <footer className="border-t border-[var(--keshizumi)] px-4 py-4 text-center">
+      <footer className="px-4 py-4 text-center">
         <p className="font-mono text-[9px] text-[var(--keshizumi)]">
-          built with claude · {new Date().getFullYear()}
+          built by will lenzen with claude · {new Date().getFullYear()}
         </p>
       </footer>
     </main>
