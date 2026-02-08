@@ -4,10 +4,12 @@ import { NavBar } from "@/components/nav-bar";
 import { LocationCard } from "@/components/location-card";
 import { LocationRow } from "@/components/location-row";
 import { useStarred } from "@/lib/use-starred";
+import { useChecked } from "@/lib/use-checked";
 import { locations, categoryConfig, type Location, type Category } from "@/data/locations";
 
 export default function SavedPage() {
   const { starred, toggle, isStarred, shareUrl, count, mounted } = useStarred();
+  const { toggle: toggleCheck, isChecked } = useChecked();
   const [selected, setSelected] = useState<Location | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -88,6 +90,8 @@ export default function SavedPage() {
                     location={loc}
                     starred={isStarred(loc.id)}
                     onToggleStar={() => toggle(loc.id)}
+                    checked={isChecked(loc.id)}
+                    onToggleCheck={() => toggleCheck(loc.id)}
                     onSelect={() => handleSelect(loc)}
                     selected={selected?.id === loc.id}
                   />

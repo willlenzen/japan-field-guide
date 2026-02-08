@@ -1,30 +1,34 @@
 "use client";
 import { categoryConfig, type Location } from "@/data/locations";
+import { PixelCheck } from "./pixel-check";
 import { PixelStar } from "./pixel-star";
 
 interface LocationRowProps {
   location: Location;
   starred: boolean;
   onToggleStar: () => void;
+  checked: boolean;
+  onToggleCheck: () => void;
   onSelect: () => void;
   selected?: boolean;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
 
-export function LocationRow({ location, starred, onToggleStar, onSelect, selected, onMouseEnter, onMouseLeave }: LocationRowProps) {
+export function LocationRow({ location, starred, onToggleStar, checked, onToggleCheck, onSelect, selected, onMouseEnter, onMouseLeave }: LocationRowProps) {
   const cat = categoryConfig[location.cat];
   return (
     <button
       onClick={onSelect}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`w-full text-left flex items-start gap-3 px-4 py-2.5 border-b border-[var(--keshizumi)]/50 transition-colors cursor-pointer ${
+      className={`w-full text-left flex items-center gap-3 px-4 py-2.5 border-b border-[var(--keshizumi)]/50 transition-all cursor-pointer ${
         selected ? "bg-[var(--sumi)]" : "hover:bg-[var(--sumi)]/60"
       }`}
+      style={{ opacity: checked ? 0.2 : 1 }}
     >
       <div
-        className="w-0.5 shrink-0 self-stretch mt-0.5"
+        className="w-0.5 shrink-0 self-stretch"
         style={{ backgroundColor: cat.color }}
       />
       <div className="flex-1 min-w-0">
@@ -47,11 +51,18 @@ export function LocationRow({ location, starred, onToggleStar, onSelect, selecte
         </div>
         <p className="text-[12px] text-[var(--sunezumi)] mt-0.5 truncate">{location.sub}</p>
       </div>
-      <PixelStar
-        filled={starred}
-        onClick={onToggleStar}
-        size={14}
-      />
+      <div className="flex items-center gap-3 shrink-0">
+        <PixelCheck
+          filled={checked}
+          onClick={onToggleCheck}
+          size={14}
+        />
+        <PixelStar
+          filled={starred}
+          onClick={onToggleStar}
+          size={14}
+        />
+      </div>
     </button>
   );
 }
