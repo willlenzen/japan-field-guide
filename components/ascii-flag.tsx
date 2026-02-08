@@ -79,6 +79,7 @@ export function AsciiFlag() {
     container.style.fontFamily = "var(--font-geist-mono), monospace";
     container.style.fontSize = `${fontSize}px`;
     container.style.lineHeight = "1";
+    container.style.letterSpacing = "0.05em";
     container.style.display = "grid";
     container.style.gridTemplateColumns = `repeat(${cols}, ${charW}px)`;
     container.style.gridAutoRows = `${charH}px`;
