@@ -13,7 +13,7 @@ export function OpenInMaps({ lat, lng, name }: OpenInMapsProps) {
       href={getMapsUrl(lat, lng, name)}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 font-mono text-[10px] text-[var(--ginnezumi)] hover:text-[var(--shironeri)] transition-colors"
+      className="inline-flex items-center gap-1.5 font-mono text-[12px] text-[var(--ginnezumi)] hover:text-[var(--shironeri)] transition-colors"
     >
       open in maps ↗
     </a>

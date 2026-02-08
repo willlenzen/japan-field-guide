@@ -95,7 +95,7 @@ export default function MapContainer({ filter, selectedId, onSelect }: MapContai
   return (
     <div
       ref={containerRef}
-      className="w-full h-[50vh] sm:h-[520px] border-b border-[var(--keshizumi)]"
+      className="sticky top-11 z-30 w-full h-[50vh] sm:h-[520px] border-b border-[var(--keshizumi)]"
     />
   );
 }

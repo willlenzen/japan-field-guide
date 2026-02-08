@@ -25,20 +25,23 @@ export function LocationRow({ location, starred, onToggleStar, onSelect, selecte
       />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          {location.icon && <span className="text-xs">{location.icon}</span>}
-          <span className="text-xs font-medium text-[var(--shironeri)] truncate">
+          {location.icon && <span className="text-[14px]">{location.icon}</span>}
+          <span
+            className="text-[14px] font-medium text-[var(--shironeri)] truncate"
+            style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}
+          >
             {location.name}
           </span>
           {location.jp && (
-            <span className="text-[10px] text-[var(--sunezumi)] font-mono">{location.jp}</span>
+            <span className="text-[12px] text-[var(--sunezumi)] font-mono">{location.jp}</span>
           )}
           {location.tag && (
-            <span className="text-[9px] font-mono text-[var(--sunezumi)] border border-[var(--keshizumi)] px-1">
+            <span className="text-[11px] font-mono text-[var(--sunezumi)] border border-[var(--keshizumi)] px-1">
               {location.tag}
             </span>
           )}
         </div>
-        <p className="text-[10px] text-[var(--sunezumi)] mt-0.5 truncate">{location.sub}</p>
+        <p className="text-[12px] text-[var(--sunezumi)] mt-0.5 truncate">{location.sub}</p>
       </div>
       <PixelStar
         filled={starred}

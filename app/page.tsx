@@ -49,7 +49,7 @@ export default function Home() {
           <p className="text-sm tracking-tight text-white/80" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
             Japan Field Guide
           </p>
-          <p className="font-mono text-[10px] text-[var(--sunezumi)] tracking-wider uppercase">
+          <p className="font-mono text-[12px] text-[var(--sunezumi)] tracking-wider uppercase">
             Tokyo · Feb 12–20, 2026
           </p>
         </div>
@@ -61,28 +61,28 @@ export default function Home() {
           href="/map"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
-          <span className="font-mono text-xs text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
+          <span className="font-mono text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
             Map
           </span>
-          <span className="font-mono text-[10px] text-[var(--keshizumi)]">→</span>
+          <span className="font-mono text-[12px] text-[var(--keshizumi)]">→</span>
         </Link>
         <Link
           href="/planning"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
-          <span className="font-mono text-xs text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
+          <span className="font-mono text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
             Planning
           </span>
-          <span className="font-mono text-[10px] text-[var(--keshizumi)]">→</span>
+          <span className="font-mono text-[12px] text-[var(--keshizumi)]">→</span>
         </Link>
         <Link
           href="/saved"
           className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
         >
-          <span className="font-mono text-xs text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
+          <span className="font-mono text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors">
             Saved
           </span>
-          <span className="font-mono text-[10px] text-[var(--keshizumi)]">
+          <span className="font-mono text-[12px] text-[var(--keshizumi)]">
             {mounted ? count : 0} →
           </span>
         </Link>

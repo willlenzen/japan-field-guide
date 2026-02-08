@@ -32,10 +32,10 @@ export function LocationList({ filter, selectedId, onSelect, isStarred, onToggle
         return (
           <div key={cat}>
             <div className="sticky top-0 z-10 bg-[var(--ro)] border-b border-[var(--keshizumi)]/50 px-4 py-1.5">
-              <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: cfg.color }}>
+              <span className="font-mono text-[12px] uppercase tracking-wider" style={{ color: cfg.color }}>
                 {cfg.label}
               </span>
-              <span className="font-mono text-[10px] text-[var(--keshizumi)] ml-2">{items.length}</span>
+              <span className="font-mono text-[12px] text-[var(--keshizumi)] ml-2">{items.length}</span>
             </div>
             {items.map((loc) => (
               <LocationRow

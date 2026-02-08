@@ -12,7 +12,7 @@ const MapContainer = dynamic(() => import("@/components/map-container"), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[50vh] sm:h-[520px] border-b border-[var(--keshizumi)] bg-[var(--ro)] flex items-center justify-center">
-      <span className="font-mono text-[10px] text-[var(--keshizumi)]">loading map…</span>
+      <span className="font-mono text-[12px] text-[var(--keshizumi)]">loading map…</span>
     </div>
   ),
 });

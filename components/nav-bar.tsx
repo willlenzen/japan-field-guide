@@ -15,7 +15,7 @@ interface NavBarProps {
 export function NavBar({ current }: NavBarProps) {
   const { count, mounted } = useStarred();
   return (
-    <nav className="sticky top-0 z-40 flex items-center justify-between border-b border-[var(--keshizumi)] bg-[var(--ro)]/95 backdrop-blur-sm px-4 h-11 font-mono text-xs">
+    <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-[var(--keshizumi)] bg-[var(--ro)]/95 backdrop-blur-sm px-4 h-11 font-mono text-[14px]">
       <Link href="/" className="text-[var(--ginnezumi)] hover:text-[var(--shironeri)] transition-colors">
         ← Field Guide
       </Link>

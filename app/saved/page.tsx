@@ -38,14 +38,14 @@ export default function SavedPage() {
       <div className="px-4 py-4 border-b border-[var(--keshizumi)] flex items-center justify-between">
         <div>
           <h1 className="font-mono text-sm text-[var(--shironeri)]">Saved</h1>
-          <p className="font-mono text-[10px] text-[var(--sunezumi)] mt-0.5">
+          <p className="font-mono text-[12px] text-[var(--sunezumi)] mt-0.5">
             {mounted ? count : 0} locations
           </p>
         </div>
         {count > 0 && (
           <button
             onClick={handleShare}
-            className="font-mono text-[10px] border border-[var(--keshizumi)] px-3 py-1.5 text-[var(--ginnezumi)] hover:text-[var(--shironeri)] hover:border-[var(--sunezumi)] transition-colors cursor-pointer"
+            className="font-mono text-[12px] border border-[var(--keshizumi)] px-3 py-1.5 text-[var(--ginnezumi)] hover:text-[var(--shironeri)] hover:border-[var(--sunezumi)] transition-colors cursor-pointer"
           >
             {copied ? "copied ✓" : "share link"}
           </button>
@@ -55,12 +55,12 @@ export default function SavedPage() {
       <div className="flex-1 overflow-y-auto">
         {!mounted ? (
           <div className="flex items-center justify-center py-16">
-            <span className="font-mono text-[10px] text-[var(--keshizumi)]">loading…</span>
+            <span className="font-mono text-[12px] text-[var(--keshizumi)]">loading…</span>
           </div>
         ) : savedLocations.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-            <p className="font-mono text-xs text-[var(--sunezumi)]">No saved locations yet</p>
-            <p className="font-mono text-[10px] text-[var(--keshizumi)] mt-2">
+            <p className="font-mono text-[14px] text-[var(--sunezumi)]">No saved locations yet</p>
+            <p className="font-mono text-[12px] text-[var(--keshizumi)] mt-2">
               Star locations from the map to save them here
             </p>
           </div>
@@ -73,12 +73,12 @@ export default function SavedPage() {
               <div key={cat}>
                 <div className="sticky top-0 z-10 bg-[var(--ro)] border-b border-[var(--keshizumi)]/50 px-4 py-1.5">
                   <span
-                    className="font-mono text-[10px] uppercase tracking-wider"
+                    className="font-mono text-[12px] uppercase tracking-wider"
                     style={{ color: cfg.color }}
                   >
                     {cfg.label}
                   </span>
-                  <span className="font-mono text-[10px] text-[var(--keshizumi)] ml-2">
+                  <span className="font-mono text-[12px] text-[var(--keshizumi)] ml-2">
                     {items.length}
                   </span>
                 </div>
