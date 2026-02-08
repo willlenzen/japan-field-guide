@@ -39,7 +39,7 @@ export function PixelStar({ filled, onClick, size = 16, className }: PixelStarPr
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={cn("shrink-0 cursor-pointer transition-colors", className)}
+      className={cn("shrink-0 cursor-pointer flex items-center justify-center w-7 h-7 hover:bg-white/[0.08] transition-colors", className)}
       aria-label={filled ? "Remove from saved" : "Add to saved"}
     >
       <svg

@@ -59,7 +59,8 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
               <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
               <button
                 onClick={onClose}
-                className="flex items-center justify-center w-4 h-4 text-[var(--sunezumi)] hover:text-[var(--shironeri)] font-mono text-[14px] cursor-pointer transition-colors"
+                className="flex items-center justify-center w-7 h-7 text-[14px] text-[var(--sunezumi)] hover:text-[var(--shironeri)] hover:bg-white/[0.08] cursor-pointer transition-colors"
+                style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}
               >
                 ✕
               </button>
