@@ -50,7 +50,7 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
           transition: "opacity 200ms ease-out, transform 200ms ease-out",
         }}
       >
-        <div className="px-4 py-5">
+        <div className="px-4 pt-5 pb-10 sm:pb-20">
           {/* header */}
           <div className="flex items-start justify-between gap-2 mb-2">
             <div className="flex-1 min-w-0">
