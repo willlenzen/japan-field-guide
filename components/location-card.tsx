@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { categoryConfig, type Location } from "@/data/locations";
 import { PixelStar } from "./pixel-star";
 import { OpenInMaps } from "./open-in-maps";
@@ -14,12 +14,23 @@ interface LocationCardProps {
 export function LocationCard({ location, starred, onToggleStar, onClose }: LocationCardProps) {
   const cat = categoryConfig[location.cat];
   const panelRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  // Entrance animation
+  useEffect(() => {
+    requestAnimationFrame(() => setVisible(true));
+  }, []);
+
+  const dismiss = () => {
+    setVisible(false);
+    setTimeout(onClose, 200);
+  };
 
   // Click outside to close
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        onClose();
+        dismiss();
       }
     }
     document.addEventListener("mousedown", handleClick);
@@ -27,15 +38,19 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-50">
-      {/* backdrop */}
-      <div className="absolute inset-0" />
-      {/* panel */}
+    <div className="fixed inset-0 z-50 pointer-events-none">
+      {/* card */}
       <div
         ref={panelRef}
-        className="absolute bottom-0 left-0 right-0 border-t border-[var(--keshizumi)] bg-[var(--sumi)]"
+        className="pointer-events-auto absolute bottom-5 left-5 right-5 mx-auto max-w-[760px] border border-[var(--keshizumi)] bg-[var(--sumi)]"
+        style={{
+          boxShadow: "4px 4px 0px rgba(0,0,0,0.5)",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 200ms ease-out, transform 200ms ease-out",
+        }}
       >
-        <div className="max-w-[800px] mx-auto px-4 py-6 pb-[calc(max(56px,env(safe-area-inset-bottom)))]">
+        <div className="px-4 py-5">
           {/* header */}
           <div className="flex items-start justify-between gap-2 mb-2">
             <div className="flex-1 min-w-0">
@@ -58,7 +73,7 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
               <PixelStar filled={starred} onClick={onToggleStar} size={16} />
               <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
               <button
-                onClick={onClose}
+                onClick={dismiss}
                 className="flex items-center justify-center w-7 h-7 text-[18px] text-[var(--sunezumi)] hover:text-[var(--shironeri)] hover:bg-white/[0.08] cursor-pointer transition-colors leading-none"
                 style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}
               >
