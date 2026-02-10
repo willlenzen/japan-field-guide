@@ -67,10 +67,10 @@ export default function Home() {
         </div>
 
         {/* navigation */}
-        <nav className="mt-6 flex flex-row gap-2 w-full">
+        <nav className="mt-6 flex flex-row gap-2 w-full md:w-auto md:gap-6 md:px-0 md:justify-center">
           <Link
             href="/map"
-            className="flex-1 flex items-center justify-between border border-white/80 px-3 py-3 hover:border-white hover:bg-white/[0.05] transition-colors group"
+            className="flex-1 md:flex-none md:w-[136px] flex items-center justify-between border border-white/80 px-3 py-3 md:px-4 hover:border-white hover:bg-white/[0.05] transition-colors group"
           >
             <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
               Map
@@ -79,7 +79,7 @@ export default function Home() {
           </Link>
           <Link
             href="/planning"
-            className="flex-1 flex items-center justify-between border border-white/80 px-3 py-3 hover:border-white hover:bg-white/[0.05] transition-colors group"
+            className="flex-1 md:flex-none md:w-[136px] flex items-center justify-between border border-white/80 px-3 py-3 md:px-4 hover:border-white hover:bg-white/[0.05] transition-colors group"
           >
             <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
               Planning
@@ -88,7 +88,7 @@ export default function Home() {
           </Link>
           <Link
             href="/saved"
-            className="flex-1 flex items-center justify-between border border-white/80 px-3 py-3 hover:border-white hover:bg-white/[0.05] transition-colors group"
+            className="flex-1 md:flex-none md:w-[136px] flex items-center justify-between border border-white/80 px-3 py-3 md:px-4 hover:border-white hover:bg-white/[0.05] transition-colors group"
           >
             <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
               Saved
