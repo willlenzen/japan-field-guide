@@ -12,9 +12,7 @@ export default function Home() {
     <div
       className="relative min-h-dvh"
       style={{
-        backgroundImage: "url('/bkgd.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        background: "url('/bkgd.png') center / cover no-repeat fixed",
       }}
     >
       {/* video background layer */}

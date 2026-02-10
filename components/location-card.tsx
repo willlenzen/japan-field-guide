@@ -65,7 +65,6 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
             </div>
             <div className="flex items-center gap-3">
               <PixelStar filled={starred} onClick={onToggleStar} size={16} />
-              <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
               <button
                 onClick={dismiss}
                 className="flex items-center justify-center w-7 h-7 text-[18px] text-[var(--sunezumi)] hover:text-[var(--shironeri)] hover:bg-white/[0.08] cursor-pointer transition-colors leading-none"
@@ -78,6 +77,11 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
 
           {/* body */}
           <p className="text-[14px] text-white leading-relaxed mb-3">{location.desc}</p>
+
+          {/* map link */}
+          <div className="mb-3">
+            <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
+          </div>
 
           {/* meta */}
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-mono text-[var(--sunezumi)]" style={{ fontVariantNumeric: "tabular-nums" }}>
