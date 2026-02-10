@@ -26,7 +26,11 @@ export default function MapPage() {
   const { toggle: toggleCheck, isChecked } = useChecked();
 
   const handleSelect = useCallback((loc: Location) => {
-    setSelected((prev) => (prev?.id === loc.id ? null : loc));
+    setSelected(loc);
+  }, []);
+
+  const handleDeselect = useCallback(() => {
+    setSelected(null);
   }, []);
 
   return (
@@ -37,6 +41,7 @@ export default function MapPage() {
         selectedId={selected?.id ?? null}
         hoveredId={hoveredId}
         onSelect={handleSelect}
+        onDeselect={handleDeselect}
       />
       <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1">
         <CategoryFilters active={filter} onChange={setFilter} />

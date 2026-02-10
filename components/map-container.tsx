@@ -9,6 +9,7 @@ interface MapContainerProps {
   selectedId: string | null;
   hoveredId: string | null;
   onSelect: (loc: Location) => void;
+  onDeselect: () => void;
 }
 
 const TILE_URL = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png";
@@ -32,13 +33,15 @@ function markerIcon(cat: Category, selected: boolean, pulse: boolean): L.DivIcon
   });
 }
 
-export default function MapContainer({ filter, selectedId, hoveredId, onSelect }: MapContainerProps) {
+export default function MapContainer({ filter, selectedId, hoveredId, onSelect, onDeselect }: MapContainerProps) {
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
   const boundariesRef = useRef<Map<string, L.Polygon>>(new Map());
   const containerRef = useRef<HTMLDivElement>(null);
   const prevHoveredRef = useRef<string | null>(null);
   const prevFilterRef = useRef<FilterType | null>(null);
+  const onDeselectRef = useRef(onDeselect);
+  onDeselectRef.current = onDeselect;
 
   // Initialize map
   useEffect(() => {
@@ -51,6 +54,11 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
     });
     L.tileLayer(TILE_URL, { attribution: TILE_ATTR, maxZoom: 18 }).addTo(map);
     mapRef.current = map;
+
+    // Click on map background deselects
+    map.on("click", () => {
+      onDeselectRef.current();
+    });
 
     return () => {
       map.remove();

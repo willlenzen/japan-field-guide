@@ -26,17 +26,6 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
     setTimeout(onClose, 200);
   };
 
-  // Click outside to close
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        dismiss();
-      }
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [onClose]);
-
   return (
     <div className="fixed inset-0 z-50 pointer-events-none">
       {/* card */}
