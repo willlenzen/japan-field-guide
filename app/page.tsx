@@ -67,10 +67,10 @@ export default function Home() {
         </div>
 
         {/* navigation */}
-        <nav className="mt-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
+        <nav className="mt-6 mx-auto flex flex-row gap-2 md:gap-6 justify-center">
           <Link
             href="/map"
-            className="flex items-center justify-between border border-white/80 px-4 py-3 hover:border-white hover:bg-white/[0.05] transition-colors group md:w-[136px]"
+            className="flex items-center justify-between border border-white/80 px-3 py-3 md:px-4 hover:border-white hover:bg-white/[0.05] transition-colors group w-[100px] md:w-[136px]"
           >
             <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
               Map
@@ -79,16 +79,16 @@ export default function Home() {
           </Link>
           <Link
             href="/planning"
-            className="flex items-center justify-between border border-white/80 px-4 py-3 hover:border-white hover:bg-white/[0.05] transition-colors group md:w-[136px]"
+            className="flex items-center justify-between border border-white/80 px-3 py-3 md:px-4 hover:border-white hover:bg-white/[0.05] transition-colors w-[100px] md:w-[136px]"
           >
-            <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
+            <span className="text-[14px] text-white/80 group-hover:text-white transition-colors group" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
               Planning
             </span>
             <span className="font-mono text-[12px] text-white/50">→</span>
           </Link>
           <Link
             href="/saved"
-            className="flex items-center justify-between border border-white/80 px-4 py-3 hover:border-white hover:bg-white/[0.05] transition-colors group md:w-[136px]"
+            className="flex items-center justify-between border border-white/80 px-3 py-3 md:px-4 hover:border-white hover:bg-white/[0.05] transition-colors group w-[100px] md:w-[136px]"
           >
             <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
               Saved
