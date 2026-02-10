@@ -38,6 +38,7 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
   const boundariesRef = useRef<Map<string, L.Polygon>>(new Map());
   const containerRef = useRef<HTMLDivElement>(null);
   const prevHoveredRef = useRef<string | null>(null);
+  const prevFilterRef = useRef<FilterType | null>(null);
 
   // Initialize map
   useEffect(() => {
@@ -157,6 +158,24 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
         markersRef.current.set(loc.id, marker);
       }
     });
+
+    // Fit bounds on initial load and when filter changes (not when selecting a location)
+    const filterChanged = prevFilterRef.current !== filter;
+    prevFilterRef.current = filter;
+
+    if (filterChanged && !selectedId && filtered.length > 0) {
+      const points: L.LatLngTuple[] = [];
+      filtered.forEach((loc) => {
+        if (loc.boundary) {
+          loc.boundary.forEach(([lat, lng]) => points.push([lat, lng]));
+        } else {
+          points.push([loc.lat, loc.lng]);
+        }
+      });
+      if (points.length > 0) {
+        map.fitBounds(L.latLngBounds(points), { padding: [40, 40], animate: true, duration: 0.3 });
+      }
+    }
   }, [filter, selectedId, onSelect]);
 
   // Hover pulse — targeted O(1) update
