@@ -55,11 +55,6 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
                 {location.jp && (
                   <span className="text-[13px] text-[var(--sunezumi)] font-mono">{location.jp}</span>
                 )}
-                {location.tag && (
-                  <span className="text-[11px] font-mono text-[var(--sunezumi)] border border-[var(--keshizumi)] px-1">
-                    {location.tag}
-                  </span>
-                )}
               </div>
               <p className="text-[12px] text-[var(--sunezumi)] mt-0.5 ml-1.5">{location.sub}</p>
             </div>
@@ -78,16 +73,25 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
           {/* body */}
           <p className="text-[14px] text-white leading-relaxed mb-3">{location.desc}</p>
 
-          {/* map link */}
-          <div className="mb-3">
-            <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
-          </div>
-
           {/* meta */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-mono text-[var(--sunezumi)]" style={{ fontVariantNumeric: "tabular-nums" }}>
-            {location.budget && <span>¥ {location.budget}</span>}
-            {location.time && <span>⏱ {location.time}</span>}
-            {location.tip && <span className="text-[var(--yamabuki)]">★ {location.tip}</span>}
+          {(location.budget || location.time || location.tip) && (
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-mono text-[var(--sunezumi)] mb-3" style={{ fontVariantNumeric: "tabular-nums" }}>
+              {location.budget && <span>¥ {location.budget}</span>}
+              {location.time && <span>⏱ {location.time}</span>}
+              {location.tip && <span className="text-[var(--yamabuki)]">★ {location.tip}</span>}
+            </div>
+          )}
+
+          {/* bottom row: badge + map link */}
+          <div className="flex items-center justify-between">
+            <div>
+              {location.tag && (
+                <span className="text-[11px] font-mono text-[var(--sunezumi)] border border-[var(--keshizumi)] px-1.5 py-0.5">
+                  {location.tag === "neighborhood" ? "Neighborhood" : location.tag}
+                </span>
+              )}
+            </div>
+            <OpenInMaps lat={location.lat} lng={location.lng} name={location.name} />
           </div>
         </div>
       </div>
