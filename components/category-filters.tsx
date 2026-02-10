@@ -1,38 +1,49 @@
 "use client";
 import { useState } from "react";
-import { categoryConfig, type Category } from "@/data/locations";
+import { categoryConfig, type Category, type FilterType } from "@/data/locations";
 import { cn } from "@/lib/utils";
 
 interface CategoryFiltersProps {
-  active: Category | "all";
-  onChange: (cat: Category | "all") => void;
+  active: FilterType;
+  onChange: (f: FilterType) => void;
 }
 
 const jpPrefix: Record<Category, string> = {
-  base: "基",
-  culture: "文",
-  food: "食",
-  shopping: "買",
+  base: "\u57fa",
+  culture: "\u6587",
+  food: "\u98df",
+  shopping: "\u8cb7",
 };
 
-const filters: { key: Category | "all"; label: string }[] = [
+const filters: { key: FilterType; label: string; color?: string }[] = [
   { key: "all", label: "All" },
   ...Object.entries(categoryConfig).map(([key, val]) => ({
     key: key as Category,
     label: `${jpPrefix[key as Category]} ${val.label}`,
   })),
+  { key: "daytrip", label: "\u65e5\u5e30\u308a", color: categoryConfig.culture.color },
 ];
 
 export function CategoryFilters({ active, onChange }: CategoryFiltersProps) {
-  const [hovered, setHovered] = useState<Category | "all" | null>(null);
+  const [hovered, setHovered] = useState<FilterType | null>(null);
 
   return (
-    <div className="flex gap-1.5 overflow-x-auto hide-scrollbar px-4 py-2">
-      {filters.map(({ key, label }) => {
+    <div className="sticky top-[calc(48px+35vh)] sm:top-[calc(48px+364px)] z-30 bg-[var(--ro)] flex gap-1.5 overflow-x-auto hide-scrollbar px-4 py-2 border-b border-[var(--keshizumi)]/50">
+      {filters.map(({ key, label, color }) => {
         const isActive = active === key;
-        const catColor = key === "all" ? "var(--shironeri)" : categoryConfig[key].color;
+        const catColor =
+          key === "all"
+            ? "var(--shironeri)"
+            : key === "daytrip"
+              ? color!
+              : categoryConfig[key].color;
         const isHovered = hovered === key && !isActive;
-        const hoverBorder = key !== "all" && isHovered ? categoryConfig[key].color : undefined;
+        const hoverBorder =
+          key !== "all" && isHovered
+            ? key === "daytrip"
+              ? color!
+              : categoryConfig[key].color
+            : undefined;
         return (
           <button
             key={key}

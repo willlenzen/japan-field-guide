@@ -2,10 +2,10 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { locations, categoryConfig, type Location, type Category } from "@/data/locations";
+import { locations, categoryConfig, type Location, type Category, type FilterType } from "@/data/locations";
 
 interface MapContainerProps {
-  filter: Category | "all";
+  filter: FilterType;
   selectedId: string | null;
   hoveredId: string | null;
   onSelect: (loc: Location) => void;
@@ -61,7 +61,12 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
     const map = mapRef.current;
     if (!map) return;
 
-    const filtered = filter === "all" ? locations : locations.filter((l) => l.cat === filter);
+    const filtered =
+      filter === "all"
+        ? locations
+        : filter === "daytrip"
+          ? locations.filter((l) => l.tag === "daytrip")
+          : locations.filter((l) => l.cat === filter);
     const filteredIds = new Set(filtered.map((l) => l.id));
 
     // Remove markers not in current filter
@@ -141,7 +146,7 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
   return (
     <div
       ref={containerRef}
-      className="sticky top-[48px] z-30 w-full h-[35vh] sm:h-[364px] border-b border-[var(--keshizumi)]"
+      className="sticky top-[48px] z-40 w-full h-[35vh] sm:h-[364px] border-b border-[var(--keshizumi)]"
     />
   );
 }

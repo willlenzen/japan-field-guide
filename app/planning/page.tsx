@@ -118,7 +118,7 @@ export default function PlanningPage() {
       <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1">
       <div className="px-4 py-4 border-b border-[var(--keshizumi)]">
         <h1 className="font-mono text-sm text-[var(--shironeri)]">Planning</h1>
-        <p className="font-mono text-[12px] text-[var(--sunezumi)] mt-1">
+        <p className="font-mono text-[12px] text-[var(--sunezumi)] mt-1" style={{ fontVariantNumeric: "tabular-nums" }}>
           {checkedCount}/{totalItems} completed
         </p>
         <div className="mt-2 h-0.5 bg-[var(--keshizumi)]">
@@ -139,7 +139,7 @@ export default function PlanningPage() {
             <CollapsibleTrigger className="w-full flex items-center justify-between px-4 py-3 border-b border-[var(--keshizumi)]/50 hover:bg-[var(--sumi)]/40 transition-colors cursor-pointer">
               <span className="font-mono text-[14px] text-white">{section.title}</span>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[12px] text-[var(--keshizumi)]">
+                <span className="font-mono text-[12px] text-[var(--keshizumi)]" style={{ fontVariantNumeric: "tabular-nums" }}>
                   {section.items.filter((i) => isChecked(i.id)).length}/{section.items.length}
                 </span>
                 <span className="font-mono text-[12px] text-[var(--keshizumi)]">

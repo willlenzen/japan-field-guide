@@ -66,6 +66,11 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
                 {location.jp && (
                   <span className="text-[13px] text-[var(--sunezumi)] font-mono">{location.jp}</span>
                 )}
+                {location.tag && (
+                  <span className="text-[11px] font-mono text-[var(--sunezumi)] border border-[var(--keshizumi)] px-1">
+                    {location.tag}
+                  </span>
+                )}
               </div>
               <p className="text-[12px] text-[var(--sunezumi)] mt-0.5 ml-1.5">{location.sub}</p>
             </div>
@@ -86,7 +91,7 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
           <p className="text-[14px] text-white leading-relaxed mb-3">{location.desc}</p>
 
           {/* meta */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-mono text-[var(--sunezumi)]">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-mono text-[var(--sunezumi)]" style={{ fontVariantNumeric: "tabular-nums" }}>
             {location.budget && <span>¥ {location.budget}</span>}
             {location.time && <span>⏱ {location.time}</span>}
             {location.tip && <span className="text-[var(--yamabuki)]">★ {location.tip}</span>}

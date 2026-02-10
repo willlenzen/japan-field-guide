@@ -10,7 +10,7 @@ export function NavBar({ current }: NavBarProps) {
   const { count, mounted } = useStarred();
   const geistPixel = { fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" };
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-[var(--keshizumi)] bg-[var(--ro)]/95 backdrop-blur-sm px-4 py-3 font-mono text-[14px]">
+    <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-[var(--keshizumi)] bg-[var(--ro)] px-4 py-3 font-mono text-[14px]">
       <Link href="/" className="block" aria-label="Home">
         <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="36" height="24" fill="#FCFAF2" />
@@ -37,7 +37,7 @@ export function NavBar({ current }: NavBarProps) {
           className={`${current === "/saved" ? "text-white" : "text-[var(--ginnezumi)]"} hover:text-white transition-colors`}
           style={geistPixel}
         >
-          Saved{mounted ? ` (${count})` : ""}
+          Saved{mounted ? <span style={{ fontVariantNumeric: "tabular-nums" }}> ({count})</span> : ""}
         </Link>
         <a
           href="https://github.com/willlenzen/japan-field-guide"

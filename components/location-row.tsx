@@ -32,7 +32,7 @@ export function LocationRow({ location, starred, onToggleStar, checked, onToggle
         style={{ backgroundColor: cat.color }}
       />
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           {location.icon && <span className="text-[14px]">{location.icon}</span>}
           <span
             className="text-[14px] font-medium text-[var(--shironeri)] truncate"

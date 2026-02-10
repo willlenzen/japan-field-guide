@@ -81,7 +81,7 @@ export default function Home() {
           <span className="text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
             Saved
           </span>
-          <span className="font-mono text-[12px] text-[var(--keshizumi)]">
+          <span className="font-mono text-[12px] text-[var(--keshizumi)]" style={{ fontVariantNumeric: "tabular-nums" }}>
             {mounted ? count : 0} →
           </span>
         </Link>

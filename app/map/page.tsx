@@ -7,7 +7,7 @@ import { LocationList } from "@/components/location-list";
 import { LocationCard } from "@/components/location-card";
 import { useStarred } from "@/lib/use-starred";
 import { useChecked } from "@/lib/use-checked";
-import type { Location, Category } from "@/data/locations";
+import type { Location, FilterType } from "@/data/locations";
 
 const MapContainer = dynamic(() => import("@/components/map-container"), {
   ssr: false,
@@ -19,7 +19,7 @@ const MapContainer = dynamic(() => import("@/components/map-container"), {
 });
 
 export default function MapPage() {
-  const [filter, setFilter] = useState<Category | "all">("all");
+  const [filter, setFilter] = useState<FilterType>("all");
   const [selected, setSelected] = useState<Location | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const { toggle, isStarred } = useStarred();

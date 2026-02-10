@@ -1,9 +1,9 @@
 "use client";
-import { locations, categoryConfig, type Location, type Category } from "@/data/locations";
+import { locations, categoryConfig, type Location, type Category, type FilterType } from "@/data/locations";
 import { LocationRow } from "./location-row";
 
 interface LocationListProps {
-  filter: Category | "all";
+  filter: FilterType;
   selectedId: string | null;
   onHover: (id: string | null) => void;
   onSelect: (loc: Location) => void;
@@ -14,7 +14,12 @@ interface LocationListProps {
 }
 
 export function LocationList({ filter, selectedId, onHover, onSelect, isStarred, onToggleStar, isChecked, onToggleCheck }: LocationListProps) {
-  const filtered = filter === "all" ? locations : locations.filter((l) => l.cat === filter);
+  const filtered =
+    filter === "all"
+      ? locations
+      : filter === "daytrip"
+        ? locations.filter((l) => l.tag === "daytrip")
+        : locations.filter((l) => l.cat === filter);
 
   // group by category
   const grouped = filtered.reduce<Record<string, Location[]>>((acc, loc) => {
@@ -40,11 +45,11 @@ export function LocationList({ filter, selectedId, onHover, onSelect, isStarred,
         });
         return (
           <div key={cat}>
-            <div className="sticky top-0 z-10 bg-[var(--ro)] border-b border-[var(--keshizumi)]/50 px-4" style={{ paddingTop: 20, paddingBottom: 12 }}>
+            <div className="bg-[var(--ro)] border-b border-[var(--keshizumi)]/50 px-4" style={{ paddingTop: 20, paddingBottom: 12 }}>
               <span className="font-mono text-[12px] uppercase tracking-wider" style={{ color: cfg.color }}>
                 {cfg.label}
               </span>
-              <span className="font-mono text-[12px] text-[var(--keshizumi)] ml-2">{items.length}</span>
+              <span className="font-mono text-[12px] text-[var(--keshizumi)] ml-2" style={{ fontVariantNumeric: "tabular-nums" }}>{items.length}</span>
             </div>
             {sorted.map((loc) => (
               <LocationRow
