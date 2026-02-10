@@ -1,5 +1,5 @@
 export type Category = "base" | "culture" | "food" | "shopping";
-export type FilterType = Category | "all" | "daytrip";
+export type FilterType = Category | "all" | "daytrip" | "neighborhood";
 
 export interface Location {
   id: string;
@@ -16,6 +16,7 @@ export interface Location {
   budget?: string;
   time?: string;
   tip?: string;
+  boundary?: [number, number][];
 }
 
 export const categoryConfig: Record<Category, { label: string; color: string; glow: string; css: string }> = {
@@ -652,5 +653,97 @@ export const locations: Location[] = [
     desc: "Edo-period ukiyo-e. Pairs with Senso-ji.",
     tag: "Art",
     group: "Samurai Art",
+  },
+
+  // \u2500\u2500 Shopping \u2014 Neighborhoods \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  {
+    id: "shibuya-area",
+    name: "Shibuya",
+    jp: "\u6e0b\u8c37",
+    sub: "Home base neighborhood",
+    cat: "shopping",
+    lat: 35.6595,
+    lng: 139.7004,
+    desc: "PARCO 6F (Nintendo, Pok\u00e9mon, Jump, Capcom), Mandarake, Book Off. Walking distance from Airbnb.",
+    tag: "neighborhood",
+    group: "Shopping Areas",
+    boundary: [
+      [35.6640, 139.6930], [35.6650, 139.6970], [35.6635, 139.7010],
+      [35.6620, 139.7050], [35.6590, 139.7070], [35.6560, 139.7060],
+      [35.6540, 139.7030], [35.6545, 139.6990], [35.6555, 139.6950],
+      [35.6580, 139.6920], [35.6610, 139.6910], [35.6640, 139.6930],
+    ],
+  },
+  {
+    id: "shinjuku-area",
+    name: "Shinjuku",
+    jp: "\u65b0\u5bbf",
+    sub: "15 min \u00b7 JR Yamanote",
+    cat: "shopping",
+    lat: 35.6938,
+    lng: 139.7034,
+    desc: "Surugaya, Komehyo, Kinokuniya, Godzilla Store, Yodobashi. Dense with retro game and watch shops.",
+    tag: "neighborhood",
+    group: "Shopping Areas",
+    boundary: [
+      [35.6980, 139.6960], [35.6990, 139.7000], [35.6985, 139.7060],
+      [35.6960, 139.7090], [35.6920, 139.7100], [35.6890, 139.7080],
+      [35.6880, 139.7040], [35.6885, 139.6990], [35.6900, 139.6950],
+      [35.6930, 139.6930], [35.6960, 139.6940], [35.6980, 139.6960],
+    ],
+  },
+  {
+    id: "akihabara-area",
+    name: "Akihabara",
+    jp: "\u79cb\u8449\u539f",
+    sub: "30 min \u00b7 JR Yamanote",
+    cat: "shopping",
+    lat: 35.6994,
+    lng: 139.7711,
+    desc: "Trader, BEEP, Super Potato, Radio Kaikan (Yellow Submarine), Kotobukiya, Volks. Retro game and hobby capital.",
+    tag: "neighborhood",
+    group: "Shopping Areas",
+    boundary: [
+      [35.7020, 139.7680], [35.7025, 139.7710], [35.7015, 139.7750],
+      [35.6995, 139.7770], [35.6970, 139.7760], [35.6955, 139.7735],
+      [35.6960, 139.7700], [35.6970, 139.7670], [35.6990, 139.7660],
+      [35.7010, 139.7665], [35.7020, 139.7680],
+    ],
+  },
+  {
+    id: "jimbocho-area",
+    name: "Jimbocho",
+    jp: "\u795e\u4fdd\u753a",
+    sub: "25 min \u00b7 Hanz\u014dmon Line",
+    cat: "shopping",
+    lat: 35.6960,
+    lng: 139.7575,
+    desc: "Ohya Shobo, Hara Shobo, Isseido, Kitazawa, Bohemian\u2019s Guild. 150+ bookshops in a few blocks.",
+    tag: "neighborhood",
+    group: "Shopping Areas",
+    boundary: [
+      [35.6985, 139.7545], [35.6990, 139.7575], [35.6982, 139.7610],
+      [35.6965, 139.7625], [35.6940, 139.7615], [35.6930, 139.7585],
+      [35.6935, 139.7555], [35.6950, 139.7535], [35.6970, 139.7530],
+      [35.6985, 139.7545],
+    ],
+  },
+  {
+    id: "nakano-area",
+    name: "Nakano",
+    jp: "\u4e2d\u91ce",
+    sub: "20 min \u00b7 JR Ch\u016b\u014d Line",
+    cat: "shopping",
+    lat: 35.7074,
+    lng: 139.6645,
+    desc: "Broadway 3F vintage watches, Mandarake Nakano. Less touristy alternative to Akihabara.",
+    tag: "neighborhood",
+    group: "Shopping Areas",
+    boundary: [
+      [35.7100, 139.6610], [35.7105, 139.6645], [35.7095, 139.6680],
+      [35.7075, 139.6695], [35.7055, 139.6685], [35.7045, 139.6655],
+      [35.7050, 139.6620], [35.7065, 139.6600], [35.7085, 139.6595],
+      [35.7100, 139.6610],
+    ],
   },
 ];

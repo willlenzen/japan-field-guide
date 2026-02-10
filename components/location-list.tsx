@@ -19,7 +19,9 @@ export function LocationList({ filter, selectedId, onHover, onSelect, isStarred,
       ? locations
       : filter === "daytrip"
         ? locations.filter((l) => l.tag === "daytrip")
-        : locations.filter((l) => l.cat === filter);
+        : filter === "neighborhood"
+          ? locations.filter((l) => l.tag === "neighborhood")
+          : locations.filter((l) => l.cat === filter);
 
   // group by category
   const grouped = filtered.reduce<Record<string, Location[]>>((acc, loc) => {
@@ -31,12 +33,21 @@ export function LocationList({ filter, selectedId, onHover, onSelect, isStarred,
 
   const catOrder: Category[] = ["base", "culture", "food", "shopping"];
 
+  // Custom section titles for special filters
+  const filterTitle: Record<string, { label: string; color: string }> = {
+    daytrip: { label: "\u65e5\u5e30\u308a Day Trip", color: categoryConfig.culture.color },
+    neighborhood: { label: "\u8fd1\u6240 Neighborhoods", color: categoryConfig.shopping.color },
+  };
+
   return (
     <div className="flex-1 overflow-y-auto">
       {catOrder.map((cat) => {
         const items = grouped[cat];
         if (!items || items.length === 0) return null;
         const cfg = categoryConfig[cat];
+        const override = filterTitle[filter];
+        const sectionLabel = override ? override.label : cfg.label;
+        const sectionColor = override ? override.color : cfg.color;
         // Sort: unchecked first, checked last (preserve original order within each group)
         const sorted = [...items].sort((a, b) => {
           const ac = isChecked(a.id) ? 1 : 0;
@@ -46,8 +57,8 @@ export function LocationList({ filter, selectedId, onHover, onSelect, isStarred,
         return (
           <div key={cat}>
             <div className="bg-[var(--ro)] border-b border-[var(--keshizumi)]/50 px-4" style={{ paddingTop: 20, paddingBottom: 12 }}>
-              <span className="font-mono text-[12px] uppercase tracking-wider" style={{ color: cfg.color }}>
-                {cfg.label}
+              <span className="font-mono text-[12px] uppercase tracking-wider" style={{ color: sectionColor }}>
+                {sectionLabel}
               </span>
               <span className="font-mono text-[12px] text-[var(--keshizumi)] ml-2" style={{ fontVariantNumeric: "tabular-nums" }}>{items.length}</span>
             </div>

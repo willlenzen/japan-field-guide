@@ -35,6 +35,7 @@ function markerIcon(cat: Category, selected: boolean, pulse: boolean): L.DivIcon
 export default function MapContainer({ filter, selectedId, hoveredId, onSelect }: MapContainerProps) {
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<Map<string, L.Marker>>(new Map());
+  const boundariesRef = useRef<Map<string, L.Polygon>>(new Map());
   const containerRef = useRef<HTMLDivElement>(null);
   const prevHoveredRef = useRef<string | null>(null);
 
@@ -56,7 +57,7 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
     };
   }, []);
 
-  // Manage markers
+  // Manage markers and boundaries
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -66,7 +67,10 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
         ? locations
         : filter === "daytrip"
           ? locations.filter((l) => l.tag === "daytrip")
-          : locations.filter((l) => l.cat === filter);
+          : filter === "neighborhood"
+            ? locations.filter((l) => l.tag === "neighborhood")
+            : locations.filter((l) => l.cat === filter);
+
     const filteredIds = new Set(filtered.map((l) => l.id));
 
     // Remove markers not in current filter
@@ -77,10 +81,64 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
       }
     });
 
-    // Add or update markers
+    // Remove boundaries not in current filter
+    boundariesRef.current.forEach((poly, id) => {
+      if (!filteredIds.has(id)) {
+        poly.remove();
+        boundariesRef.current.delete(id);
+      }
+    });
+
+    // Add or update markers / boundaries
     filtered.forEach((loc) => {
-      const existing = markersRef.current.get(loc.id);
       const isSelected = loc.id === selectedId;
+
+      // Neighborhood locations use boundaries, not pins
+      if (loc.boundary) {
+        const existingMarker = markersRef.current.get(loc.id);
+        if (existingMarker) {
+          existingMarker.remove();
+          markersRef.current.delete(loc.id);
+        }
+
+        const existingBoundary = boundariesRef.current.get(loc.id);
+        const css = categoryConfig[loc.cat].css;
+
+        if (existingBoundary) {
+          existingBoundary.setStyle({
+            color: css,
+            weight: isSelected ? 3 : 2,
+            opacity: isSelected ? 0.9 : 0.6,
+            fillOpacity: isSelected ? 0.12 : 0.06,
+          });
+        } else {
+          const latlngs = loc.boundary.map(([lat, lng]) => [lat, lng] as L.LatLngTuple);
+          const poly = L.polygon(latlngs, {
+            color: css,
+            weight: 2,
+            opacity: 0.6,
+            fillColor: css,
+            fillOpacity: 0.06,
+            dashArray: "6 4",
+          }).addTo(map);
+          poly.bindTooltip(loc.name, {
+            className: "pixel-tooltip",
+            direction: "center",
+          });
+          poly.on("click", () => onSelect(loc));
+          boundariesRef.current.set(loc.id, poly);
+        }
+
+        // Zoom to fit selected boundary
+        if (isSelected) {
+          const latlngs = loc.boundary.map(([lat, lng]) => [lat, lng] as L.LatLngTuple);
+          map.fitBounds(L.latLngBounds(latlngs), { padding: [40, 40], animate: true, duration: 0.3 });
+        }
+        return;
+      }
+
+      // Regular pin locations
+      const existing = markersRef.current.get(loc.id);
       const icon = markerIcon(loc.cat, isSelected, isSelected);
 
       if (existing) {
@@ -112,6 +170,21 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
 
     // Clean up previous hover
     if (prevId && prevId !== currId) {
+      // Check if it's a boundary location
+      const prevBoundary = boundariesRef.current.get(prevId);
+      if (prevBoundary) {
+        const prevLoc = locations.find((l) => l.id === prevId);
+        if (prevLoc) {
+          const css = categoryConfig[prevLoc.cat].css;
+          const isSelected = prevId === selectedId;
+          prevBoundary.setStyle({
+            weight: isSelected ? 3 : 2,
+            opacity: isSelected ? 0.9 : 0.6,
+            fillOpacity: isSelected ? 0.12 : 0.06,
+          });
+        }
+      }
+      // Check if it's a marker location
       const prevMarker = markersRef.current.get(prevId);
       if (prevMarker) {
         const prevLoc = locations.find((l) => l.id === prevId);
@@ -123,8 +196,16 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
       }
     }
 
-    // Apply pulse to current hover
+    // Apply hover to current
     if (currId) {
+      const currBoundary = boundariesRef.current.get(currId);
+      if (currBoundary) {
+        currBoundary.setStyle({
+          weight: 3,
+          opacity: 0.9,
+          fillOpacity: 0.15,
+        });
+      }
       const currMarker = markersRef.current.get(currId);
       if (currMarker) {
         const currLoc = locations.find((l) => l.id === currId);
@@ -136,11 +217,13 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
     }
   }, [hoveredId, selectedId]);
 
-  // Pan to selected
+  // Pan to selected (non-boundary locations)
   useEffect(() => {
     if (!selectedId || !mapRef.current) return;
     const loc = locations.find((l) => l.id === selectedId);
-    if (loc) mapRef.current.panTo([loc.lat, loc.lng], { animate: true, duration: 0.3 });
+    if (loc && !loc.boundary) {
+      mapRef.current.panTo([loc.lat, loc.lng], { animate: true, duration: 0.3 });
+    }
   }, [selectedId]);
 
   return (

@@ -22,6 +22,7 @@ const filters: { key: FilterType; label: string; color?: string }[] = [
     label: `${jpPrefix[key as Category]} ${val.label}`,
   })),
   { key: "daytrip", label: "\u65e5\u5e30\u308a", color: categoryConfig.culture.color },
+  { key: "neighborhood", label: "\u8fd1\u6240", color: categoryConfig.shopping.color },
 ];
 
 export function CategoryFilters({ active, onChange }: CategoryFiltersProps) {
@@ -31,16 +32,17 @@ export function CategoryFilters({ active, onChange }: CategoryFiltersProps) {
     <div className="sticky top-[calc(48px+35vh)] sm:top-[calc(48px+364px)] z-30 bg-[var(--ro)] flex gap-1.5 overflow-x-auto hide-scrollbar px-4 py-2 border-b border-[var(--keshizumi)]/50">
       {filters.map(({ key, label, color }) => {
         const isActive = active === key;
+        const isSpecial = key === "daytrip" || key === "neighborhood";
         const catColor =
           key === "all"
             ? "var(--shironeri)"
-            : key === "daytrip"
+            : isSpecial
               ? color!
               : categoryConfig[key].color;
         const isHovered = hovered === key && !isActive;
         const hoverBorder =
           key !== "all" && isHovered
-            ? key === "daytrip"
+            ? isSpecial
               ? color!
               : categoryConfig[key].color
             : undefined;
