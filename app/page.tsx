@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { useStarred } from "@/lib/use-starred";
 
@@ -8,16 +8,18 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
 
-  // Apply background image to body for homepage only
-  useEffect(() => {
-    document.body.style.background = "url('/bkgd.png') center / cover no-repeat fixed";
-    return () => {
-      document.body.style.background = "";
-    };
-  }, []);
-
   return (
     <div className="relative min-h-dvh">
+      {/* Background image — fixed behind everything */}
+      <div
+        className="fixed inset-0 -z-10"
+        style={{
+          backgroundImage: "url('/bkgd.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
       {/* video background layer */}
       <div className="absolute inset-x-0 top-6 sm:top-10 z-0 flex justify-center pointer-events-none">
         <div className="relative w-full h-[400px] sm:h-[700px] overflow-hidden">
