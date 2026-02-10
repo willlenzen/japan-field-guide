@@ -43,7 +43,7 @@ export default function Home() {
     <main className="relative z-1 min-h-dvh flex flex-col">
       {/* flag video + title */}
       <div className="flex flex-col items-center px-4 pt-4">
-        <div className="relative w-full max-w-[320px] overflow-hidden" style={{ aspectRatio: "3 / 2" }}>
+        <div className="relative w-full h-[400px] sm:h-[700px] mt-6 sm:mt-10 overflow-hidden">
           {/* poster image — shown immediately */}
           <img
             src="/flag-poster.png"
@@ -68,11 +68,10 @@ export default function Home() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background: [
-                "radial-gradient(ellipse at center, transparent 30%, var(--ro) 100%)",
-                "linear-gradient(to top, var(--ro) 0%, transparent 40%)",
-                "linear-gradient(to bottom, var(--ro) 0%, transparent 40%)",
-                "linear-gradient(to left, var(--ro) 0%, transparent 30%)",
-                "linear-gradient(to right, var(--ro) 0%, transparent 30%)",
+                "linear-gradient(to top, var(--ro) 0%, transparent 80px)",
+                "linear-gradient(to bottom, var(--ro) 0%, transparent 80px)",
+                "linear-gradient(to left, var(--ro) 0%, transparent 60px)",
+                "linear-gradient(to right, var(--ro) 0%, transparent 60px)",
               ].join(", "),
             }}
           />
