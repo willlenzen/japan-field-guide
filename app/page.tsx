@@ -8,27 +8,25 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
 
-  // Make html/body transparent so the page background image shows
+  // Apply background image to body for homepage only
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
-    const prevHtmlBg = html.style.backgroundColor;
-    const prevBodyBg = body.style.backgroundColor;
+    const prevHtmlBg = html.style.cssText;
+    const prevBodyBg = body.style.background;
+    const prevBodyBgColor = body.style.backgroundColor;
     html.style.backgroundColor = "transparent";
     body.style.backgroundColor = "transparent";
+    body.style.background = "url('/bkgd.png') center / cover no-repeat fixed #0C0C0C";
     return () => {
-      html.style.backgroundColor = prevHtmlBg;
-      body.style.backgroundColor = prevBodyBg;
+      html.style.cssText = prevHtmlBg;
+      body.style.background = prevBodyBg;
+      body.style.backgroundColor = prevBodyBgColor;
     };
   }, []);
 
   return (
-    <div
-      className="relative min-h-dvh"
-      style={{
-        background: "url('/bkgd.png') center / cover no-repeat fixed",
-      }}
-    >
+    <div className="relative min-h-dvh">
       {/* video background layer */}
       <div className="absolute inset-x-0 top-6 sm:top-10 z-0 flex justify-center pointer-events-none">
         <div className="relative w-full h-[400px] sm:h-[700px] overflow-hidden">
