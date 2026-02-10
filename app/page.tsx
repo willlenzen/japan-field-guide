@@ -10,39 +10,25 @@ export default function Home() {
 
   return (
     <div className="relative min-h-dvh">
-      {/* Background image — fixed behind everything */}
-      <div
-        className="fixed inset-0 -z-10"
-        style={{
-          backgroundImage: "url('/bkgd.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
-      {/* video background layer */}
-      <div className="absolute inset-x-0 top-6 sm:top-10 z-0 flex justify-center pointer-events-none">
-        <div className="relative w-full h-[400px] sm:h-[700px] overflow-hidden">
-          {/* poster image — shown immediately */}
-          <img
-            src="/flag-poster.png"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-            style={{ opacity: videoReady ? 0 : 1 }}
-          />
-          {/* video — fades in when ready */}
-          <video
-            ref={videoRef}
-            src="/flag.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            onCanPlay={() => setVideoReady(true)}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-            style={{ opacity: videoReady ? 1 : 0 }}
-          />
-        </div>
+      {/* Video background — fixed behind everything */}
+      <div className="fixed inset-0 -z-10">
+        <img
+          src="/flag-poster.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          style={{ opacity: videoReady ? 0 : 1 }}
+        />
+        <video
+          ref={videoRef}
+          src="/flag.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          onCanPlay={() => setVideoReady(true)}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          style={{ opacity: videoReady ? 1 : 0 }}
+        />
       </div>
 
       {/* vertical watermark */}
@@ -77,26 +63,21 @@ export default function Home() {
       </div>
 
       {/* content layer — on top of video */}
-      <main className="relative z-10 min-h-dvh flex flex-col">
-        {/* title */}
-        <div className="flex flex-col items-center px-4 pt-4">
-          {/* spacer to push title below the video area */}
-          <div className="h-[420px] sm:h-[720px]" />
-          <div className="text-center space-y-2" style={{ marginTop: 40 }}>
-            <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
-              日本のフィールドガイド
-            </h1>
-            <p className="text-sm tracking-tight text-white/80" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
-              Japan Field Guide
-            </p>
-            <p className="font-mono text-[12px] text-[var(--sunezumi)] tracking-wider uppercase" style={{ paddingBottom: 40 }}>
-              Tokyo · Feb 12–20, 2026
-            </p>
-          </div>
+      <main className="relative z-10 min-h-dvh flex flex-col items-center justify-center px-4">
+        <div className="text-center space-y-2">
+          <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
+            日本のフィールドガイド
+          </h1>
+          <p className="text-sm tracking-tight text-white/80" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
+            Japan Field Guide
+          </p>
+          <p className="font-mono text-[12px] text-[var(--sunezumi)] tracking-wider uppercase" style={{ paddingBottom: 40 }}>
+            Tokyo · Feb 12–20, 2026
+          </p>
         </div>
 
         {/* navigation */}
-        <nav className="mt-16 md:mt-6 px-4 pb-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
+        <nav className="mt-6 flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
           <Link
             href="/map"
             className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
