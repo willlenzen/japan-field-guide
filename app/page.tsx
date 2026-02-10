@@ -1,10 +1,13 @@
 "use client";
+import { useState, useRef } from "react";
 import Link from "next/link";
-import { AsciiFlag } from "@/components/ascii-flag";
 import { useStarred } from "@/lib/use-starred";
 
 export default function Home() {
   const { count, mounted } = useStarred();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
     <>
       {/* vertical watermark */}
@@ -38,9 +41,42 @@ export default function Home() {
         東京2026年2月
       </div>
     <main className="relative z-1 min-h-dvh flex flex-col">
-      {/* flag + title */}
+      {/* flag video + title */}
       <div className="flex flex-col items-center px-4 pt-4">
-        <AsciiFlag />
+        <div className="relative w-full max-w-[320px] overflow-hidden" style={{ aspectRatio: "3 / 2" }}>
+          {/* poster image — shown immediately */}
+          <img
+            src="/flag-poster.png"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+            style={{ opacity: videoReady ? 0 : 1 }}
+          />
+          {/* video — fades in when ready */}
+          <video
+            ref={videoRef}
+            src="/flag.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            onCanPlay={() => setVideoReady(true)}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+            style={{ opacity: videoReady ? 1 : 0 }}
+          />
+          {/* vignette overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: [
+                "radial-gradient(ellipse at center, transparent 30%, var(--ro) 100%)",
+                "linear-gradient(to top, var(--ro) 0%, transparent 40%)",
+                "linear-gradient(to bottom, var(--ro) 0%, transparent 40%)",
+                "linear-gradient(to left, var(--ro) 0%, transparent 30%)",
+                "linear-gradient(to right, var(--ro) 0%, transparent 30%)",
+              ].join(", "),
+            }}
+          />
+        </div>
         <div className="text-center space-y-2" style={{ marginTop: 40 }}>
           <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
             日本のフィールドガイド
