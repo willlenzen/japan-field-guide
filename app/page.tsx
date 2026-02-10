@@ -102,15 +102,15 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative z-10 px-4 py-4 text-center">
-        <p className="font-mono text-[11px] text-[var(--keshizumi)]">
-          built by{" "}
+        <p className="font-mono text-[12px] text-[var(--keshizumi)]">
+          Built by{" "}
           <a
             href="https://willl.xyz/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--sunezumi)] no-underline hover:text-[var(--shironeri)] transition-colors"
           >
-            will lenzen
+            Will Lenzen
           </a>
           {" "}&middot; {new Date().getFullYear()} &middot;{" "}
           <a
