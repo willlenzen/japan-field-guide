@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#0C0C0C]">
-      {/* Video */}
+      {/* Video — fullscreen background */}
       <video
         src="/flag.mp4"
         poster="/flag-poster.png"
@@ -15,10 +15,10 @@ export default function Home() {
         loop
         muted
         playsInline
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-[700px] w-auto object-contain z-0"
+        className="fixed inset-0 w-full h-full object-cover z-0"
       />
 
-      {/* Content */}
+      {/* Content — on top of video */}
       <div className="relative z-10">
         {/* vertical watermark */}
         <div
@@ -51,7 +51,7 @@ export default function Home() {
           東京2026年2月
         </div>
 
-        <main className="min-h-screen flex flex-col items-center justify-center px-4">
+        <main className="min-h-screen flex flex-col px-4 pt-[300px] sm:pt-[460px]">
           <div className="text-center space-y-2">
             <h1 className="font-mono text-lg tracking-tight text-[var(--shironeri)]">
               日本のフィールドガイド
@@ -65,33 +65,33 @@ export default function Home() {
           </div>
 
           {/* navigation */}
-          <nav className="mt-6 flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
+          <nav className="mt-6 mx-auto flex flex-col gap-2 w-full max-w-sm md:flex-row md:max-w-none md:w-auto md:gap-6 md:justify-center">
             <Link
               href="/map"
-              className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
+              className="btn-glitch flex items-center justify-between border border-white/80 px-4 py-3 hover:border-white transition-colors group md:w-[136px]"
             >
-              <span className="text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
+              <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
                 Map
               </span>
-              <span className="font-mono text-[12px] text-[var(--keshizumi)]">→</span>
+              <span className="font-mono text-[12px] text-white/50">→</span>
             </Link>
             <Link
               href="/planning"
-              className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
+              className="btn-glitch flex items-center justify-between border border-white/80 px-4 py-3 hover:border-white transition-colors group md:w-[136px]"
             >
-              <span className="text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
+              <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
                 Planning
               </span>
-              <span className="font-mono text-[12px] text-[var(--keshizumi)]">→</span>
+              <span className="font-mono text-[12px] text-white/50">→</span>
             </Link>
             <Link
               href="/saved"
-              className="flex items-center justify-between border border-[var(--keshizumi)] px-4 py-3 hover:border-[var(--sunezumi)] transition-colors group md:w-[136px]"
+              className="btn-glitch flex items-center justify-between border border-white/80 px-4 py-3 hover:border-white transition-colors group md:w-[136px]"
             >
-              <span className="text-[14px] text-[var(--ginnezumi)] group-hover:text-[var(--shironeri)] transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
+              <span className="text-[14px] text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-geist-pixel-square), var(--font-geist-mono), monospace" }}>
                 Saved
               </span>
-              <span className="font-mono text-[12px] text-[var(--keshizumi)]" style={{ fontVariantNumeric: "tabular-nums" }}>
+              <span className="font-mono text-[12px] text-white/50" style={{ fontVariantNumeric: "tabular-nums" }}>
                 {mounted ? count : 0} →
               </span>
             </Link>

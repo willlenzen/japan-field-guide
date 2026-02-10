@@ -177,6 +177,19 @@ body::before {
   100% { width: 80px; height: 80px; opacity: 0;   border-style: dotted; border-width: 3px; }
 }
 
+/* glitch hover */
+@keyframes glitch {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-2px); }
+  40%  { transform: translateX(2px); }
+  60%  { transform: translateX(-1px); }
+  80%  { transform: translateX(1px); }
+  100% { transform: translateX(0); }
+}
+.btn-glitch:hover {
+  animation: glitch 0.3s ease;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
