@@ -19,7 +19,7 @@ export function LocationRow({ location, starred, onToggleStar, checked, onToggle
   const cat = categoryConfig[location.cat];
   return (
     <button
-      onClick={onSelect}
+      onClick={(e) => { e.stopPropagation(); onSelect(); }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={`w-full text-left flex items-center gap-3 px-4 border-b border-[var(--keshizumi)]/50 transition-all duration-300 ease-in-out cursor-pointer ${

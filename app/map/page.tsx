@@ -33,6 +33,11 @@ export default function MapPage() {
     setSelected(null);
   }, []);
 
+  const handleFilterChange = useCallback((f: FilterType) => {
+    setFilter(f);
+    setSelected(null);
+  }, []);
+
   return (
     <div className="min-h-dvh flex flex-col bg-[var(--ro)]">
       <NavBar current="/map" />
@@ -43,8 +48,8 @@ export default function MapPage() {
         onSelect={handleSelect}
         onDeselect={handleDeselect}
       />
-      <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1">
-        <CategoryFilters active={filter} onChange={setFilter} />
+      <div className="max-w-[800px] mx-auto w-full flex flex-col flex-1" onClick={handleDeselect}>
+        <CategoryFilters active={filter} onChange={handleFilterChange} />
         <LocationList
           filter={filter}
           selectedId={selected?.id ?? null}
