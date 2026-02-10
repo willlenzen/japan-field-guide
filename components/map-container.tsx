@@ -236,14 +236,39 @@ export default function MapContainer({ filter, selectedId, hoveredId, onSelect }
     }
   }, [hoveredId, selectedId]);
 
-  // Pan to selected (non-boundary locations)
+  // Zoom to selected location, or fit all when deselected
   useEffect(() => {
-    if (!selectedId || !mapRef.current) return;
-    const loc = locations.find((l) => l.id === selectedId);
-    if (loc && !loc.boundary) {
-      mapRef.current.panTo([loc.lat, loc.lng], { animate: true, duration: 0.3 });
+    const map = mapRef.current;
+    if (!map) return;
+
+    if (selectedId) {
+      const loc = locations.find((l) => l.id === selectedId);
+      if (loc && !loc.boundary) {
+        map.setView([loc.lat, loc.lng], 16, { animate: true, duration: 0.3 });
+      }
+    } else {
+      // Deselected — fit bounds to all visible locations
+      const filtered =
+        filter === "all"
+          ? locations
+          : filter === "daytrip"
+            ? locations.filter((l) => l.tag === "daytrip")
+            : filter === "neighborhood"
+              ? locations.filter((l) => l.tag === "neighborhood")
+              : locations.filter((l) => l.cat === filter);
+      const points: L.LatLngTuple[] = [];
+      filtered.forEach((loc) => {
+        if (loc.boundary) {
+          loc.boundary.forEach(([lat, lng]) => points.push([lat, lng]));
+        } else {
+          points.push([loc.lat, loc.lng]);
+        }
+      });
+      if (points.length > 0) {
+        map.fitBounds(L.latLngBounds(points), { padding: [40, 40], animate: true, duration: 0.3 });
+      }
     }
-  }, [selectedId]);
+  }, [selectedId, filter]);
 
   return (
     <div
