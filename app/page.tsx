@@ -10,18 +10,9 @@ export default function Home() {
 
   // Apply background image to body for homepage only
   useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
-    const prevHtmlBg = html.style.cssText;
-    const prevBodyBg = body.style.background;
-    const prevBodyBgColor = body.style.backgroundColor;
-    html.style.backgroundColor = "transparent";
-    body.style.backgroundColor = "transparent";
-    body.style.background = "url('/bkgd.png') center / cover no-repeat fixed #0C0C0C";
+    document.body.style.background = "url('/bkgd.png') center / cover no-repeat fixed";
     return () => {
-      html.style.cssText = prevHtmlBg;
-      body.style.background = prevBodyBg;
-      body.style.backgroundColor = prevBodyBgColor;
+      document.body.style.background = "";
     };
   }, []);
 
