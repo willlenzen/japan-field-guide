@@ -8,6 +8,7 @@ import { LocationCard } from "@/components/location-card";
 import { useStarred } from "@/lib/use-starred";
 import { useChecked } from "@/lib/use-checked";
 import type { Location, FilterType } from "@/data/locations";
+import { SiteFooter } from "@/components/site-footer";
 
 const MapContainer = dynamic(() => import("@/components/map-container"), {
   ssr: false,
@@ -61,6 +62,7 @@ export default function MapPage() {
           onToggleCheck={toggleCheck}
         />
       </div>
+      <SiteFooter />
       {selected && (
         <LocationCard
           location={selected}

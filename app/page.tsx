@@ -101,7 +101,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 px-4 py-4 text-center">
+      <footer className="relative z-10 mt-auto px-4 py-4 text-center">
         <p className="font-mono text-[12px] text-[var(--keshizumi)]">
           Built by{" "}
           <a

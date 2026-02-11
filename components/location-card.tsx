@@ -87,7 +87,7 @@ export function LocationCard({ location, starred, onToggleStar, onClose }: Locat
             <div>
               {location.tag && (
                 <span className="text-[11px] font-mono text-[var(--sunezumi)] border border-[var(--keshizumi)] px-1.5 py-0.5">
-                  {location.tag === "neighborhood" ? "Neighborhood" : location.tag}
+                  {location.tag === "neighborhood" ? "Neighborhood" : location.tag === "daytrip" ? "Day trip" : location.tag}
                 </span>
               )}
             </div>

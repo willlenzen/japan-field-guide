@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/collapsible";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
+import { SiteFooter } from "@/components/site-footer";
 
 interface CheckItem {
   id: string;
@@ -175,6 +176,7 @@ export default function PlanningPage() {
         ))}
       </div>
       </div>
+      <SiteFooter />
     </div>
   );
 }

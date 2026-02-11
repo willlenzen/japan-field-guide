@@ -6,6 +6,7 @@ import { LocationRow } from "@/components/location-row";
 import { useStarred } from "@/lib/use-starred";
 import { useChecked } from "@/lib/use-checked";
 import { locations, categoryConfig, type Location, type Category } from "@/data/locations";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function SavedPage() {
   const { starred, toggle, isStarred, shareUrl, count, mounted } = useStarred();
@@ -103,6 +104,7 @@ export default function SavedPage() {
       </div>
       </div>
 
+      <SiteFooter />
       {selected && (
         <LocationCard
           location={selected}
